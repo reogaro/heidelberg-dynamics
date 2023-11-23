@@ -14,18 +14,24 @@
   The objective of the project is to create a small video game with at least a playable level and a completly planned out and structured development. 
 
  1.4. Definitions, acronyms, and abbreviations
+  
+  The playable character is named "L41k4".
+  The research facility is named "Heidelberg Dynamics"
 
  1.5. References
 
  1.6. Overview
-
+  
 2. Proposed system
  2.1. Overview
 
  2.2. Functional requirements
-
-  The player is required to be able to move the playable character.
-  The game is required to have multiple useable weapons between which the player is allowed to swap.
+  2.2.1 
+  The player is required to be able to move the playable character throughout the levels. WASD for up, down, left, right.
+  The player character should be able to aim using the mouse, e.g. the character aims in the cursor direction at all times.
+  The player character should move throughout a level, interacting with the environment. e.g. bump into a wall, walk down a corridor, etc. (Collision).
+  The playable character and the enemies have a certain number of hitpoints. When they run out the character is eliminated.
+  The game is required to have multiple useable weapons which the player can pick up and between which they can swap.
   There also have to be different enemies which can attack and damage the player.
   The player must also be able to defeat these enemies with a certain amount of attacks.
   To complete a level the player must be able to collect key cards which unlock the next level.
@@ -34,6 +40,9 @@
 
   2.3.1. User interface and human factors
 
+   The game features a health bar that is visable to the player at all times.
+   The game contains a overview of the weapons the player has currently and which weapon is equipped at the moment. This overview is visable at all times.
+   The game cotains a indicator that shows the player if they already collected the key card of the current level.
    A new game can be started by the user within one click.
    The volume of the game is changable within four clicks.
    The programm can be closed within two click.
@@ -41,13 +50,17 @@
 
   2.3.2. Documentation   
 
+   There should be a documentation of at least the most important diagramms that help to understand the concept of the game in detail and as a whole. (see 2.5)
+   There should be a short documentation of all SCRUM meetings.
+   THere should be a documentation of changes made in the development process. 
+
   2.3.3. Hardware considerations
 
-    A PC with at least Windows 10,
-    minimum of 2 GB Ram,
-    1 GB VRam,
-    2 GB Storage
-    and a CPU with a minimum 2 GHz.
+    A PC with at least Windows 10 or a contemporary GNU/Linux variant,
+    At least 2 GB RAM
+    At least a GTX 750 or equivalent GPU
+    At least 2 GB of SSD Storage
+    At least a Ryzen 3 1200/Core i5-5200U or equivalent.
 
   2.3.4. Performance characteristics
 
@@ -71,14 +84,28 @@
 
   2.3.8. Physical environment
 
+   There is no internet connection required to play the game.
+   There is a mouse and keyboard needed to play the game.
+   There are no accessibility settings due to the games short development time.
+
   2.3.9. Security issues
 
-   Game uses no internet connection and no data from the player so there should be no security issues.
+   Due to the fact that the game uses no internet connection and no data from the player so there should be no security issues.
 
   2.3.10. Resource issues
 
+  2.3.11. Audio
+
+   The game features its own soundtrack that is running in the background during the main menu and the playthrough.
+   There are sounds for object collision.
+   There are sounds for shooting and eliminating enemies.
+
  2.4. Pseudo requirements
 
+   The game should feel smooth and responsive at all times.
+   The game is designed in pixelart.
+   All levels and the overall design of the characters should match the setting of the research facility.
+   
  2.5. System models
 
   2.5.1. Scenarios
