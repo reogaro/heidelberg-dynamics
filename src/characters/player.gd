@@ -41,7 +41,7 @@ func execute_interact():
 						get_parent().get_node("keycard").visible = false
 						get_parent().get_node("keycard").get_node("interaction_area").interaction_type = "collected"
 						get_parent().get_node("keycard").get_node("interaction_area").interaction_label = ""
-						#change label of  
+						#change label of door
 						get_parent().get_node("next_level").interaction_label = "[E] to enter next level"
 						
 						#update_interacts()
