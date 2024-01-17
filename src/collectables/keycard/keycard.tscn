@@ -11,9 +11,6 @@ scale = Vector2(0.304545, 0.286364)
 texture = ExtResource("1_ygkml")
 
 [node name="interaction_area" parent="." instance=ExtResource("2_vvorm")]
-z_index = -5
-position = Vector2(1, -4)
-scale = Vector2(0.15, 0.2)
 interaction_label = "[E] to collect"
 interaction_type = "collect"
 interaction_value = "keycard"

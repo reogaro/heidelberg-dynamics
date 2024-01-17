@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://interaction_area.gd" id="1_mtjnm"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5ecc4"]
-size = Vector2(135, 88)
+size = Vector2(60, 39)
 
 [node name="interaction_area" type="Area2D"]
 collision_layer = 2
@@ -12,5 +12,11 @@ monitoring = false
 script = ExtResource("1_mtjnm")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-1, 19)
+position = Vector2(0, -1)
 shape = SubResource("RectangleShape2D_5ecc4")
+
+[node name="Label" type="Label" parent="."]
+offset_left = -92.0
+offset_top = -58.0
+offset_right = 91.0
+offset_bottom = -35.0

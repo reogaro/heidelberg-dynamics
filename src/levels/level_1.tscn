@@ -2350,7 +2350,7 @@ position = Vector2(254, -118)
 position = Vector2(-241, -901)
 
 [node name="next_level" parent="." instance=ExtResource("7_by2qq")]
-position = Vector2(264, -1049)
+position = Vector2(256, -1014)
 interaction_label = "Collect the keycard first"
 interaction_type = "next_level"
 interaction_value = "level_2.tscn"

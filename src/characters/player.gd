@@ -44,24 +44,26 @@ func execute_interact():
 						#change label of  
 						get_parent().get_node("next_level").interaction_label = "[E] to enter next level"
 						
-						update_interacts()
+						#update_interacts()
 			"next_level":
 				if got_keycard:
 					get_tree().change_scene_to_file("res://levels/" + get_parent().get_node("next_level").interaction_value)
 					
 func _on_interaction_area_area_entered(area):
 	all_interacts.insert(0,area)
-	update_interacts()
+	all_interacts[0].get_node("Label").text = all_interacts[0].interaction_label
+	
 
 func _on_interaction_area_area_exited(area):
+	area.get_node("Label").text = ""
 	all_interacts.erase(area)
-	update_interacts()
+	
 
-func update_interacts():
-	if all_interacts:
-		interact_label.text = all_interacts[0].interaction_label
-	else:
-		interact_label.text = ""
+#func update_interacts():
+#	if all_interacts:
+#		all_interacts[0].get_node("Label").text = all_interacts[0].interaction_label
+#	else:
+#		interact_label.text = ""
 
 func update_animation():
 	if velocity!=Vector2.ZERO:
