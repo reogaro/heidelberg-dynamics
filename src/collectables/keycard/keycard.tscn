@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://h1hx8ikqh5dt"]
+
+[ext_resource type="Texture2D" uid="uid://c0n81q2cod14h" path="res://art/collectables/keycard/keycard_red.png" id="1_ygkml"]
+[ext_resource type="PackedScene" uid="uid://bwgxp8q8ea1nr" path="res://interaction_area.tscn" id="2_vvorm"]
+
+[node name="keycard" type="StaticBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(1.43051e-06, 4.76837e-07)
+scale = Vector2(0.304545, 0.286364)
+texture = ExtResource("1_ygkml")
+
+[node name="interaction_area" parent="." instance=ExtResource("2_vvorm")]
+z_index = -5
+position = Vector2(1, -4)
+scale = Vector2(0.15, 0.2)
+interaction_label = "[E] to collect"
+interaction_type = "collect"
+interaction_value = "keycard"
