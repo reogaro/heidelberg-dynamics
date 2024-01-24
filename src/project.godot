@@ -12,7 +12,7 @@ config_version=5
 
 config/name="escape_from_heidelberg_dynamics"
 run/main_scene="res://levels/level_1.tscn"
-config/features=PackedStringArray("4.2", "GL Compatibility")
+config/features=PackedStringArray("4.2", "C#", "GL Compatibility")
 config/icon="res://icon.svg"
 
 [display]
@@ -22,9 +22,13 @@ window/size/viewport_height=100
 window/size/mode=2
 window/stretch/scale=3.0
 
+[dotnet]
+
+project/assembly_name="escape_from_heidelberg_dynamics"
+
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/gut/plugin.cfg")
+enabled=PackedStringArray("res://addons/gdUnit4/plugin.cfg")
 
 [input]
 
