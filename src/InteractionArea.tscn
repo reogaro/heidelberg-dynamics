@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://drpf3xbvm2xmy"]
+
+[ext_resource type="Script" path="res://InteractionArea.cs" id="1_qnpfh"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oirxf"]
+size = Vector2(38, 20)
+
+[node name="InteractionArea" type="Area2D"]
+collision_layer = 2
+collision_mask = 0
+monitoring = false
+script = ExtResource("1_qnpfh")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_oirxf")
+
+[node name="Label" type="Label" parent="."]
+z_index = 20
+offset_left = -89.0
+offset_top = -77.0
+offset_right = 89.0
+offset_bottom = -54.0

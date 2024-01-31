@@ -26,10 +26,6 @@ window/stretch/scale=3.0
 
 project/assembly_name="escape_from_heidelberg_dynamics"
 
-[editor_plugins]
-
-enabled=PackedStringArray("res://addons/gdUnit4/plugin.cfg")
-
 [input]
 
 right={

@@ -1,9 +1,5 @@
-[gd_scene load_steps=2 format=3 uid="uid://b2vqr662vei01"]
-
-[ext_resource type="PackedScene" uid="uid://bwgxp8q8ea1nr" path="res://interaction_area.tscn" id="1_xhcgb"]
+[gd_scene format=3 uid="uid://b2vqr662vei01"]
 
 [node name="skillpoint" type="StaticBody2D"]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-
-[node name="interaction_area" parent="." instance=ExtResource("1_xhcgb")]

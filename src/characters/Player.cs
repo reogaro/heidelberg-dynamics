@@ -5,78 +5,79 @@ public partial class Player : CharacterBody2D
 {
 	private float moveSpeed = 250;
 	private bool gotKeycard = false;
-	private Area2D allInteracts[];
+	private InteractionArea currentInteract;
 	private AnimationTree animationTree;
-	private StateMachine stateMachine;
+	private AnimationNodeStateMachinePlayback stateMachine;
 	
 	public override void _Ready(){
 		this.gotKeycard = false;
+		animationTree = GetNode<AnimationTree>("AnimationTree");
+		stateMachine = (AnimationNodeStateMachinePlayback)animationTree.Get("parameters/playback");
 	}
 	
-	public override void _PhyicsProcess(double delta){
-		lookat(getGlobalMousePosition());
+	public override void _PhysicsProcess(double delta){
+		LookAt(GetGlobalMousePosition());
 		//get input directions
-		
-		Vector2 inputDirection = Vector2(
-		Input.getActionRawStrength("right") - Input.getActionRawStrength("left"),
-		Input.getActionRawStrength("down") - Input.getActionRawStrength("up")
+		Vector2 inputDirection = new Vector2(
+		Input.GetActionRawStrength("right") - Input.GetActionRawStrength("left"),
+		Input.GetActionRawStrength("down") - Input.GetActionRawStrength("up")
 		);
 		
 		//execute interaction if needed
-		if Input.isActionPressed("interact"){
-			executeInteract();
+		if(Input.IsActionPressed("interact")){
+			ExecuteInteract();
 		}
 		//update velocity and move character
 		this.Velocity = inputDirection * moveSpeed;	
-		moveAndSlide();
+		MoveAndSlide();
 	
-		updateAnimation();
+		UpdateAnimation();
 	}
 	
-	public void executeInteract(){
-		if(allInteracts){
+	public void ExecuteInteract(){
+		if(currentInteract!=null){
 			//check which type of interaction is executed
-			switch(allInteracts[0].getType()){
-				case "collect":
-					//check if a keycard or a weapon is picked up
-					switch(allInteracts[0].getValue()){
-						case "keycard":
-							gotKeycard = true;
-							//update interaction labels and visability of keycard
-							getParent().getNode("keycard").visible = false;
-							getParent().getNode("keycard").getNode("interaction_area").setType("collected");
-							getParent().getNode("keycard").getNode("interaction_area").setLabel("");
-							//change label of door
-							getParent().getNode("next_level").interactionLabel("[E] to enter next level"); 
-							
-							//update_interacts()
-							break;
-					case "next_level":
-						if(gotKeycard){
-							getTree().changeSceneToFile("res://levels/" + getParent().getNode("next_level").getValue());
-						}
-						break;
-					break;
+		 switch(currentInteract.GetInteractType()){
+			case "collect":
+				//check if a keycard or a weapon is picked up
+				if(currentInteract.GetValue()=="keycard"){
+						this.gotKeycard = true;
+						//update interaction labels and visability of keycard
+						GetParent().GetNode<StaticBody2D>("keycard").Visible = false;
+						GetParent().GetNode<StaticBody2D>("keycard").GetNode<InteractionArea>("InteractionArea").SetInteractType("collected");
+						GetParent().GetNode<StaticBody2D>("keycard").GetNode<InteractionArea>("InteractionArea").SetLabel("");
+						//change label of door
+						GetParent().GetNode<InteractionArea>("NextLevel").SetLabel("[E] to enter next level"); 
+				}
+				break;
+			case "next_level":
+				if(gotKeycard){
+					GetTree().ChangeSceneToFile("res://levels/" + GetParent().GetNode<InteractionArea>("NextLevel").GetValue());
+				}
+				break;
 			}
 		}
 	}
-	
-	public override void _onInteractionAreaAreaEntered(area){
-		allInteracts.insert(0,area);
-		allInteracts[0].getNode("Label").text = allInteracts[0].getLabel();
-	}
-	
 
-	public override void _onInteractionAreaAreaExited(area){
-		area.getNode("Label").text = "";
-		allInteracts.erase(area);
-	}	
 
-	public void update_animation():
-		if(velocity!=Vector2.ZERO){
-			stateMachine.travel("walk");
+	public void UpdateAnimation(){
+		if(this.Velocity!=Vector2.Zero){
+			stateMachine.Travel("walk");
 		}
 		else{
-			stateMachine.travel("idle");
+			stateMachine.Travel("idle");
 		}
+	}
+
+	private void _on_interaction_area_area_entered(InteractionArea area)
+	{
+		this.currentInteract = area;
+		this.currentInteract.GetNode<Label>("Label").Text = currentInteract.GetLabel();
+	}
+
+	private void _on_interaction_area_area_exited(InteractionArea area)
+	{
+		area.GetNode<Label>("Label").Text = "";
+		this.currentInteract = null;
+	}
 }

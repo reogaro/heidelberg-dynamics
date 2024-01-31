@@ -1,29 +1,31 @@
 using Godot;
 using System;
 
-public class InteractionArea : Area2D
+public partial class InteractionArea : Area2D
 {
-	private:
-		String interactionLabel = "none"
-		String interationValue = "none"
-		String interactionType = "none"
+	[Export]
+	private String interactionLabel = "none";
+	[Export]
+	private String interactionValue = "none";
+	[Export]
+	private String interactionType = "none";
 	
-	public String getLabel(){
+	public String GetLabel(){
 		return interactionLabel;
 	}
-	public String getType(){
+	public String GetInteractType(){
 		return interactionType;
 	}
-	public String getValue(){
+	public String GetValue(){
 		return interactionValue;
 	}
-	public void setLabel(String newLabel){
+	public void SetLabel(String newLabel){
 		interactionLabel = newLabel;
 	}
-	public void setType(String newType){
+	public void SetInteractType(String newType){
 		interactionType = newType;
 	}
-	public void setValue(String newValue){
+	public void SetValue(String newValue){
 		interactionValue = newValue;
 	}
 }
