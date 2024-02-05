@@ -5518,19 +5518,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Leo\\.nuget\\packages\\": {}
+    "C:\\Users\\ASUS\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Leo\\Documents\\GitHub\\heidelberg-dynamics\\TestProject1\\TestProject1.csproj",
+      "projectUniqueName": "C:\\Users\\ASUS\\Documents\\GitHub\\heidelberg-dynamics\\TestProject1\\TestProject1.csproj",
       "projectName": "TestProject1",
-      "projectPath": "C:\\Users\\Leo\\Documents\\GitHub\\heidelberg-dynamics\\TestProject1\\TestProject1.csproj",
-      "packagesPath": "C:\\Users\\Leo\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Leo\\Documents\\GitHub\\heidelberg-dynamics\\TestProject1\\obj\\",
+      "projectPath": "C:\\Users\\ASUS\\Documents\\GitHub\\heidelberg-dynamics\\TestProject1\\TestProject1.csproj",
+      "packagesPath": "C:\\Users\\ASUS\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\ASUS\\Documents\\GitHub\\heidelberg-dynamics\\TestProject1\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Leo\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\ASUS\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net8.0"

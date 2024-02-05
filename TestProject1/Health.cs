@@ -20,6 +20,11 @@ public class Health
         ResistanceElectric = initialResistanceElectric;
     }
 
+    public void ApplyTrueDamage(int damage){
+        if(Alive){
+            Hp -= damage;
+        }
+    }
     public void ApplyDamage(int damagePhysical, int damageElectric, int damageHeat)
     {
         if (Alive)
@@ -29,6 +34,7 @@ public class Health
             int damageHeatTotal = (int)((float)((100 - ResistanceHeat) / 100) * damageHeat);
 
             // shield stuff is missing
+    
 
             Hp -= damagePhysicalTotal + damageElectricTotal + damageHeatTotal;
 
@@ -68,7 +74,23 @@ public class Health
         }
     }
 
-    public void Restore()
+    public void DestroyShield(){
+        if(Alive){
+           Shield = 0;
+        }
+    }
+    public void RestoreHealth(){
+        if(Alive){
+          Hp = HpMax;
+        }
+    }
+
+    public void RestoreShield(){
+        if(Alive){
+            Shield = ShieldMax;
+        }
+    }
+    public void Revive()
     {
         if (!Alive)
         {
