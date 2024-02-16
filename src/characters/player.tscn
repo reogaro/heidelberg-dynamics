@@ -96,7 +96,7 @@ transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition
 [sub_resource type="CircleShape2D" id="CircleShape2D_evy6d"]
 radius = 14.0
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" groups=["entity"]]
 script = ExtResource("1_07cog")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -136,6 +136,9 @@ offset_left = -41.0
 offset_top = -38.0
 offset_right = 41.0
 offset_bottom = -15.0
+
+[node name="BulletPoint" type="Node2D" parent="."]
+position = Vector2(20, 0)
 
 [connection signal="area_entered" from="InteractionComponents/InteractionArea" to="." method="_on_interaction_area_area_entered"]
 [connection signal="area_exited" from="InteractionComponents/InteractionArea" to="." method="_on_interaction_area_area_exited"]

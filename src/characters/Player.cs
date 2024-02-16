@@ -8,6 +8,9 @@ public partial class Player : CharacterBody2D
 	private InteractionArea currentInteract;
 	private AnimationTree animationTree;
 	private AnimationNodeStateMachinePlayback stateMachine;
+	private double firerate = 0.5;
+	private PackedScene bullet = GD.Load<PackedScene>("res://projectiles/projectile.tscn");
+	private bool canFire = true;
 	
 	public override void _Ready(){
 		this.gotKeycard = false;
@@ -22,7 +25,10 @@ public partial class Player : CharacterBody2D
 		Input.GetActionRawStrength("right") - Input.GetActionRawStrength("left"),
 		Input.GetActionRawStrength("down") - Input.GetActionRawStrength("up")
 		);
-		
+		//fire bullet if pressed
+		if(Input.IsActionPressed("fire")&& canFire){
+			Fire();
+		}
 		//execute interaction if needed
 		if(Input.IsActionPressed("interact")){
 			ExecuteInteract();
@@ -80,4 +86,17 @@ public partial class Player : CharacterBody2D
 		area.GetNode<Label>("Label").Text = "";
 		this.currentInteract = null;
 	}
+	
+	public async void Fire(){
+		Node bulletInstance = bullet.Instantiate();
+		GetParent().AddChild(bulletInstance);
+		canFire = false;
+		await ToSignal(GetTree().CreateTimer(firerate), "timeout");
+		canFire = true;
+	}
+	
+	public Vector2 GetPosition(){
+		return Position;
+	}
+	
 }

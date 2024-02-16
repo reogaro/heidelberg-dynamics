@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://br5lxipvjplup"]
+
+[ext_resource type="Texture2D" uid="uid://c7h5ph34lc6x1" path="res://art/projectiles/BFG-Hit.png" id="1_ka1of"]
+[ext_resource type="Script" path="res://projectiles/explosion.cs" id="2_og71h"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0doe2"]
+animations = [{
+"frames": [{
+"duration": 15.0,
+"texture": ExtResource("1_ka1of")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Explosion" type="AnimatedSprite2D"]
+scale = Vector2(0.160377, 0.160377)
+sprite_frames = SubResource("SpriteFrames_0doe2")
+frame_progress = 1.0
+script = ExtResource("2_og71h")
+
+[connection signal="animation_finished" from="." to="." method="_on_animation_finished"]
