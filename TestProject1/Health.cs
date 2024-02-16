@@ -2,101 +2,88 @@ using Xunit.Sdk;
 
 public class Health
 {
-    public int Hp { get; private set; }
-    public int HpMax { get; private set; } = 100;
-    public int Shield { get; private set; }
-    public int ShieldMax { get; private set; } = 100;
-    public int ResistancePhysical { get; private set; }
-    public int ResistanceHeat { get; private set; }
-    public int ResistanceElectric { get; private set; }
-    public bool Alive { get; private set; } = true;
+    public int _hp { get; private set; }
+    public int _hpMax { get; private set; }
+    public int _shield { get; private set; }
+    public int _shieldMax { get; private set; }
+    public int _resistancePhysical { get; private set; }
+    public int _resistanceHeat { get; private set; }
+    public int _resistanceElectric { get; private set; }
+    public bool _alive { get; private set; } = true;
+    public const int _damageBias = 12;
 
-    public Health(int initialResistancePhysical, int initialResistanceHeat, int initialResistanceElectric)
+    public Health(int hpMax, int shieldMax, int initialResistancePhysical, int initialResistanceHeat, int initialResistanceElectric)
     {
-        Hp = HpMax;
-        Shield = HpMax;
-        ResistancePhysical = initialResistancePhysical;
-        ResistanceHeat = initialResistanceHeat;
-        ResistanceElectric = initialResistanceElectric;
+        _hpMax = hpMax;
+        _shieldMax = shieldMax;
+        _hp = _hpMax;
+        _shield = _hpMax;
+        _resistancePhysical = initialResistancePhysical;
+        _resistanceHeat = initialResistanceHeat;
+        _resistanceElectric = initialResistanceElectric;
     }
 
-    public void ApplyTrueDamage(int damage){
-        if(Alive){
-            Hp -= damage;
+    public void ApplyTrueDamage(int damage)
+    {
+        int damageAfterShield = Math.Max(damage - _shield, 0);
+        _shield = Math.Max(_shield - damage, 0);
+        _hp = Math.Max(_hp - damageAfterShield, 0);
+
+        if (_hp <= 0)
+        {
+            _hp = 0;
+            _alive = false;
         }
     }
     public void ApplyDamage(int damagePhysical, int damageElectric, int damageHeat)
     {
-        if (Alive)
+        int damagePhysicalAfterResistance = (1000 - _resistancePhysical) / 1000 * damagePhysical;
+        int damageElectricAfterResistance = (1000 - _resistanceElectric) / 1000 * damageElectric;
+        int damageHeatAfterResistance = (1000 - _resistanceHeat) / 1000 * damageHeat;
+
+        // do stuff
+
+        if (_hp <= 0)
         {
-            int damagePhysicalTotal = (int)((float)((100 - ResistancePhysical) / 100) * damagePhysical);
-            int damageElectricTotal = (int)((float)((100 - ResistanceElectric) / 100) * damageElectric);
-            int damageHeatTotal = (int)((float)((100 - ResistanceHeat) / 100) * damageHeat);
-
-            // shield stuff is missing
-    
-
-            Hp -= damagePhysicalTotal + damageElectricTotal + damageHeatTotal;
-
-            if (Hp <= 0)
-            {
-                Hp = 0;
-                Alive = false;
-            }
+            _hp = 0;
+            _alive = false;
         }
     }
 
     public void HealHP(int amount)
     {
-        if (Alive)
-        {
-            Hp += amount;
-        }
+        _hp = Math.Max(_hp + amount, _hpMax);
     }
 
     public void HealShield(int amount)
     {
-        if (Alive)
-        {
-            Shield += amount;
-        }
+        _shield = Math.Max(_shield + amount, _shieldMax);
     }
 
     public void HealBoth(int healAmount)
     {
-        if (Alive)
-        {
-            int missingHealth = Math.Max(0, HpMax - Hp);
-            int healShield = Math.Max(0, healAmount - missingHealth);
-
-            Hp = Math.Max(HpMax, healAmount);
-            Shield = Math.Max(ShieldMax, healShield);
-        }
+        int healthMissing = _hpMax - _hp;
+        _hp = Math.Min(_hp + healAmount, _hpMax);
+        _shield = Math.Min(_shield + healAmount - healthMissing, _shieldMax);
     }
 
-    public void DestroyShield(){
-        if(Alive){
-           Shield = 0;
-        }
+    public void DestroyShield()
+    {
+        _shield = 0;
     }
-    public void RestoreHealth(){
-        if(Alive){
-          Hp = HpMax;
-        }
+    public void RestoreHealth()
+    {
+        _hp = _hpMax;
     }
 
-    public void RestoreShield(){
-        if(Alive){
-            Shield = ShieldMax;
-        }
+    public void RestoreShield()
+    {
+        _shield = _shieldMax;
     }
     public void Revive()
     {
-        if (!Alive)
-        {
-            Hp = 1;
-            Shield = 0;
-            Alive = true;
-        }
+        _hp = 1;
+        _shield = 0;
+        _alive = true;
     }
 }
