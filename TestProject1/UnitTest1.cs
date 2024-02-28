@@ -37,6 +37,7 @@ public class UnitTest1
     [InlineData(1000, 1000, 1200, 800, 0, true)] //Destroy shield with extra damage to health
     [InlineData(1000, 1000, 3000, 0, 0, false)] //Overkill
     [InlineData(1000, 1000, 2000, 0, 0, false)] //Exact deadly damage
+    [InlineData(1000, 1000, 0, 1000, 1000, true)] //No damage
     public void True_Damage_Test(
         int startHP, int startShield, int appliedDamage,
         int expectedHp, int expectedShield, bool expectedAlive)
@@ -59,7 +60,7 @@ public class UnitTest1
     [InlineData(500, 500, 1000, 1000, 500, 500, 1000, 0, true)] //Exactly destory shield
     [InlineData(500, 500, 1000, 1000, 750, 750, 500, 0, true)] //Destroy shield with extra damage to health
     [InlineData(500, 500, 1000, 1000, 1000, 1000, 0, 0, false)] //Exactly deadly damage
-    [InlineData(1000, 1000, 1000, 1000, 9000, 9000, 1000, 1000, true)]
+    [InlineData(1000, 1000, 1000, 1000, 9000, 9000, 1000, 1000, true)]//Resistance blocks damage
     public void ApplyDamage_Test(
         int initialResistancePhysical, int initialResistanceElectric,
         int initialVulnPhysical, int initialVulnElectric,
@@ -80,7 +81,7 @@ public class UnitTest1
     }
 
     [Theory]
-    [InlineData(1000, 1000, 0, 0, 0, 1000, 1000, true)]
+    [InlineData(1000, 1000, 0, 0, 0, 1000, 1000, true)] // heal nothing
     [InlineData(1000, 1000, 500, 0, 250, 750, 1000, true)] // heal HP only
     [InlineData(1000, 1000, 500, 0, 1000, 1000, 1000, true)] // overheal HP only
     [InlineData(1000, 1000, 0, 500, 250, 1000, 750, true)] // heal Shield only

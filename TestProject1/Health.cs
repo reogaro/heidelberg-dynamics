@@ -29,7 +29,7 @@ public class Health
     {
         int damageAfterShield = Math.Max(damage - _shield, 0);
         _shield = Math.Max(_shield - damage, 0);
-        _hp = Math.Max(_hp - damageAfterShield, 0);
+        _hp = _hp - damageAfterShield;
 
         if (_hp <= 0)
         {
