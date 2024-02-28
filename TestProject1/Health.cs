@@ -22,7 +22,7 @@ public class Health
         _resistancePhysical = initialResistancePhysical;
         _resistanceElectric = initialResistanceElectric;
         _vulnElectric = vulnElectric;
-        _vulnElectric = vulnElectric;
+        _vulnPhysical = vulnPhysical;
     }
 
     public void ApplyTrueDamage(int damage)
