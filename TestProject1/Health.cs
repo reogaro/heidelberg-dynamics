@@ -66,8 +66,13 @@ public class Health
     public void HealBoth(int healAmount)
     {
         int healthMissing = _hpMax - _hp;
+
         _hp = Math.Min(_hp + healAmount, _hpMax);
-        _shield = Math.Min(_shield + healAmount - healthMissing, _shieldMax);
+
+        if (healAmount > healthMissing)
+        {
+            _shield = Math.Min(_shield + healAmount - healthMissing, _shieldMax);
+        }
     }
 
     public void DestroyShield()
@@ -83,6 +88,18 @@ public class Health
     {
         _shield = _shieldMax;
     }
+
+    public void damageShield(int damage)
+    {
+        _shield = Math.Max(_shield - damage, 0);
+    }
+
+    public void damageHP(int damage)
+    {
+        _hp = Math.Max(_hp - damage, 0);
+        _alive = Convert.ToBoolean(_hp);
+    }
+
     public void Revive()
     {
         _hp = 1;

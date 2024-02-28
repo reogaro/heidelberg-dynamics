@@ -1,8 +1,15 @@
 namespace TestProject1;
 using Xunit;
+using Xunit.Abstractions;
 
 public class UnitTest1
 {
+    private readonly ITestOutputHelper _testLogger;
+    public UnitTest1(ITestOutputHelper testLogger)
+    {
+        this._testLogger = testLogger;
+    }
+
     [Fact]
     public void Health_Initialization_Test()
     {
@@ -11,7 +18,7 @@ public class UnitTest1
         int initialVulnPhysical = 0;
         int initialVulnElectric = 200;
 
-        Health health = new Health(1000, 1000, initialResistancePhysical, initialResistanceElectric, 
+        Health health = new Health(1000, 1000, initialResistancePhysical, initialResistanceElectric,
             initialVulnPhysical, initialVulnElectric);
 
         Assert.Equal(1000, health._hpMax);
@@ -52,7 +59,7 @@ public class UnitTest1
     public void ApplyDamage_Test(
         int initialResistancePhysical, int initialResistanceElectric,
         int initialVulnPhysical, int initialVulnElectric,
-        int damagePhysical, int damageElectric, 
+        int damagePhysical, int damageElectric,
         int expectedHp, int expectedShield, bool expectedAlive)
     {
         // Arrange
@@ -68,4 +75,32 @@ public class UnitTest1
         Assert.Equal(expectedAlive, health._alive);
     }
 
+    [Theory]
+    [InlineData(1000, 1000, 0, 0, 0, 1000, 1000, true)]
+    [InlineData(1000, 1000, 500, 0, 250, 750, 1000, true)] // heal HP only
+    [InlineData(1000, 1000, 500, 0, 1000, 1000, 1000, true)] // overheal HP only
+    [InlineData(1000, 1000, 0, 500, 250, 1000, 750, true)] // heal Shield only
+    [InlineData(1000, 1000, 0, 500, 1000, 1000, 1000, true)] // overheal Shield only
+    [InlineData(1000, 1000, 500, 500, 750, 1000, 750, true)] // partial heal both
+    [InlineData(1000, 1000, 500, 500, 1000, 1000, 1000, true)] // heal both
+    [InlineData(1000, 1000, 500, 500, 2000, 1000, 1000, true)] // overheal both
+    public void HealBoth_Test(
+        int initialHP, int initialShield,
+        int damageHP, int damageShield, int healAmount,
+        int expectedHp, int expectedShield, bool expectedAlive)
+    {
+        // Arrange
+        Health health = new Health(initialHP, initialShield, 0, 0, 0, 0);
+
+        // Act
+        health.damageHP(damageHP);
+        health.damageShield(damageShield);
+
+        health.HealBoth(healAmount);
+
+        // Assert
+        Assert.Equal(expectedHp, health._hp);
+        Assert.Equal(expectedShield, health._shield);
+        Assert.Equal(expectedAlive, health._alive);
+    }
 }
