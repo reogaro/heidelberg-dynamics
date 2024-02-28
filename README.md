@@ -2,6 +2,10 @@
 
 ## Coding Style
 
+The Coding Style is based on the MS .NET C# coding style:
+
+https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/coding-style/coding-conventions
+
 Class Names and Namespaces are named in PascalCase.
 
 Functions, Parameters, and Variables of any kind are to be named in camelCase.
@@ -51,4 +55,6 @@ public class Health
 
 Health.cs contains the health system.
 
-The Player has a seperate Health and Shield.
+Entities have a seperate Health and Shield, the shield gets depleted and regenerated more easily than health, and once health drops to zero the entity dies, even if it has shield points left.
+
+All calculations are to be made in integer form for speed, shifted one digit to the left. e.g. 852 equals 85.2f
