@@ -48,8 +48,7 @@ public class UnitTest1
 
     [Theory]
     [InlineData(100, 100, 0, 0, 9000, 9000, 0, 0, false)] //Overkill
-    [InlineData(100, 100, 100, 100, 300, 300, 1000, 540, true)] //Calculation Test + no shield break
-
+    [InlineData(100, 100, 100, 100, 300, 300, 1000, 433, true)] //Calculation Test + no shield break
     public void ApplyDamage_Test(
         int initialResistancePhysical, int initialResistanceElectric,
         int initialVulnPhysical, int initialVulnElectric,

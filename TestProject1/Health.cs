@@ -42,11 +42,11 @@ public class Health
         // line-by-line for easy debugging
         // doing stuff just twice dowsn't warrant its own function
 
-        int damagePhysicalAfterResistance = (1000 - _resistancePhysical) / 1000 * damagePhysical;
-        int damageElectricAfterResistance = (1000 - _resistanceElectric) / 1000 * damageElectric;
+        int damagePhysicalAfterResistance = ((1000 - _resistancePhysical) * damagePhysical) / 1000;
+        int damageElectricAfterResistance = ((1000 - _resistanceElectric) * damageElectric) / 1000;
 
-        int damagePhysicalAfterVuln = (1000 + _vulnPhysical) * damagePhysicalAfterResistance;
-        int damageElectricAfterVuln = (1000 + _vulnElectric) * damageElectricAfterResistance;
+        int damagePhysicalAfterVuln = ((1000 + _vulnPhysical) * damagePhysicalAfterResistance) / 1000;
+        int damageElectricAfterVuln = ((1000 + _vulnElectric) * damageElectricAfterResistance) / 1000;
 
         int damageTotal = damagePhysicalAfterVuln + damageElectricAfterVuln;
 
