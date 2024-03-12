@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://d20omr72jn5no"]
 
-[ext_resource type="PackedScene" uid="uid://bdsdvd6v54xcx" path="res://characters/Player.tscn" id="1_ulw2u"]
+[ext_resource type="PackedScene" uid="uid://bdsdvd6v54xcx" path="res://characters/player.tscn" id="1_ulw2u"]
 [ext_resource type="TileSet" uid="uid://cg8moryowj5tm" path="res://levels/level_1.tres" id="2_y0dpw"]
 [ext_resource type="PackedScene" uid="uid://drpf3xbvm2xmy" path="res://InteractionArea.tscn" id="4_kdf8r"]
 [ext_resource type="PackedScene" uid="uid://h1hx8ikqh5dt" path="res://collectables/keycard/keycard.tscn" id="6_d1dj2"]

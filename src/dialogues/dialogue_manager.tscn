@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=3 uid="uid://qc0pnivgofhd"]
+
+[ext_resource type="Script" path="res://dialogues/DialogueManager.cs" id="1_u2spo"]
+[ext_resource type="Texture2D" uid="uid://cvkhqdpfvolw1" path="res://art/dialogue/dialogue_box.png" id="2_d2xru"]
+
+[node name="DialogueManager" type="Node2D"]
+script = ExtResource("1_u2spo")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("2_d2xru")
+patch_margin_left = 5
+patch_margin_top = 5
+patch_margin_right = 5
+
+[node name="Name" type="RichTextLabel" parent="NinePatchRect"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Text" type="RichTextLabel" parent="NinePatchRect"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
