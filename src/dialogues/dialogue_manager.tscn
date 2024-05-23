@@ -1,10 +1,58 @@
-[gd_scene load_steps=3 format=3 uid="uid://qc0pnivgofhd"]
+[gd_scene load_steps=3 format=3 uid="uid://bifmlm8010k3a"]
 
-[ext_resource type="Script" path="res://dialogues/DialogueManager.cs" id="1_u2spo"]
 [ext_resource type="Texture2D" uid="uid://cvkhqdpfvolw1" path="res://art/dialogue/dialogue_box.png" id="2_d2xru"]
 
+[sub_resource type="CSharpScript" id="CSharpScript_i8sfx"]
+script/source = "using Godot;
+using System;
+
+public partial class DialogueManager : Node2D
+{
+	
+	public override void _Ready(){
+		GetNode<NinePatchRect>(\"NinePatchRect\").Visible = true;
+	}
+
+	
+	public void StartDialogue(String dialogueNumber){
+		GetParent().GetNode<Player>(\"Player\").SetMoveable(false);
+		GetNode<NinePatchRect>(\"NinePatchRect\").Visible = true;
+		switch(dialogueNumber){
+			case \"0\":
+				DisplayDialogue(\"Game\",\"Welcome to Heidelberg Dynamics! You are L41k4, and need to escape this facility.\"
+									+ \" Use [W][A][S][D] to move to the next room. Press [E] to continue\");
+				break;
+			case \"1\":
+				DisplayDialogue(\"Game\",\"You need to be careful. This facility is full of enemie turrets that will\" +
+									\" shoot you on sight. Use [LMB] to shoot your weapon\");
+				break;
+			default:
+				EndDialogue();
+				break;
+		}
+	}
+	
+	public void DisplayDialogue(String name,String text){
+		GetNode<NinePatchRect>(\"NinePatchRect\").GetNode<RichTextLabel>(\"Name\").Text = name;
+		GetNode<NinePatchRect>(\"NinePatchRect\").GetNode<RichTextLabel>(\"Text\").Text = text;
+	}
+	
+	public void EndDialogue(){
+		GetNode<NinePatchRect>(\"NinePatchRect\").Visible = true;
+		GetParent().GetNode<Player>(\"Player\").SetMoveable(true);
+	}
+	
+	private void _Input(){
+		if(Input.IsActionPressed(\"continue\")){
+			EndDialogue();
+		}
+	}
+	
+}
+"
+
 [node name="DialogueManager" type="Node2D"]
-script = ExtResource("1_u2spo")
+script = SubResource("CSharpScript_i8sfx")
 
 [node name="NinePatchRect" type="NinePatchRect" parent="."]
 offset_right = 40.0

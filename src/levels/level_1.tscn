@@ -1,8 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://d20omr72jn5no"]
+[gd_scene load_steps=7 format=3 uid="uid://d20omr72jn5no"]
 
 [ext_resource type="PackedScene" uid="uid://bdsdvd6v54xcx" path="res://characters/player.tscn" id="1_ulw2u"]
 [ext_resource type="TileSet" uid="uid://cg8moryowj5tm" path="res://levels/level_1.tres" id="2_y0dpw"]
 [ext_resource type="PackedScene" uid="uid://drpf3xbvm2xmy" path="res://InteractionArea.tscn" id="4_kdf8r"]
+[ext_resource type="AudioStream" uid="uid://civnndwr3p8pe" path="res://audio/main_theme/main_theme.wav" id="5_4yvxb"]
+[ext_resource type="PackedScene" uid="uid://t8qj6jpfpvri" path="res://characters/turret.tscn" id="6_6vlf3"]
 [ext_resource type="PackedScene" uid="uid://h1hx8ikqh5dt" path="res://collectables/keycard/keycard.tscn" id="6_d1dj2"]
 
 [node name="level_1" type="Node2D"]
@@ -39,3 +41,28 @@ position = Vector2(259, -1012)
 interactionLabel = "Collect the keycard first"
 interactionValue = "level_2.tscn"
 interactionType = "next_level"
+
+[node name="BeginnerDialogue" parent="." instance=ExtResource("4_kdf8r")]
+position = Vector2(253, -117)
+interactionLabel = ""
+interactionValue = "0"
+interactionType = "dialogue"
+
+[node name="ShootDialogue" parent="." instance=ExtResource("4_kdf8r")]
+position = Vector2(253, -370)
+interactionLabel = ""
+interactionValue = "1"
+interactionType = "dialogue"
+
+[node name="KeycardDialogue" parent="." instance=ExtResource("4_kdf8r")]
+position = Vector2(250, -720)
+interactionLabel = ""
+interactionValue = "2"
+interactionType = "dialogue"
+
+[node name="MainTheme" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_4yvxb")
+autoplay = true
+
+[node name="Turret" parent="." instance=ExtResource("6_6vlf3")]
+position = Vector2(-515, -900)

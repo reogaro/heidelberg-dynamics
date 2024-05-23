@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://t8qj6jpfpvri"]
+
+[ext_resource type="Script" path="res://characters/Turret.cs" id="1_iha0m"]
+[ext_resource type="Texture2D" uid="uid://cuqkw7g5rqa7m" path="res://art/player/towerDefense_tile249.png" id="1_yut3a"]
+[ext_resource type="Texture2D" uid="uid://b8j05dx1ch5t7" path="res://art/player/towerDefense_tile181.png" id="2_5e3gp"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_urnbw"]
+size = Vector2(50, 53)
+
+[node name="Turret" type="CharacterBody2D"]
+scale = Vector2(0.6, 0.6)
+script = ExtResource("1_iha0m")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_urnbw")
+
+[node name="Turret" type="Sprite2D" parent="."]
+z_index = 1
+position = Vector2(0, -11)
+texture = ExtResource("1_yut3a")
+
+[node name="Base" type="Sprite2D" parent="."]
+texture = ExtResource("2_5e3gp")

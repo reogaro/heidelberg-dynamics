@@ -3,8 +3,10 @@ using System;
 
 public partial class Player : CharacterBody2D
 {
-	private float moveSpeed = 250;
+	private float moveSpeed = 175;
+	private bool hasWeapon = false;
 	private bool gotKeycard = false;
+	private bool moveable = true;
 	private InteractionArea currentInteract;
 	private AnimationTree animationTree;
 	private AnimationNodeStateMachinePlayback stateMachine;
@@ -19,25 +21,29 @@ public partial class Player : CharacterBody2D
 	}
 	
 	public override void _PhysicsProcess(double delta){
-		LookAt(GetGlobalMousePosition());
 		//get input directions
 		Vector2 inputDirection = new Vector2(
-		Input.GetActionRawStrength("right") - Input.GetActionRawStrength("left"),
-		Input.GetActionRawStrength("down") - Input.GetActionRawStrength("up")
+			Input.GetActionRawStrength("right") - Input.GetActionRawStrength("left"),
+			Input.GetActionRawStrength("down") - Input.GetActionRawStrength("up")
 		);
-		//fire bullet if pressed
-		if(Input.IsActionPressed("fire")&& canFire){
-			Fire();
+		if(moveable){
+			LookAt(GetGlobalMousePosition());
+
+			//fire bullet if pressed
+			if(Input.IsActionPressed("fire")&& canFire&& hasWeapon){
+				Fire();
+			}
+			//update velocity and move character
+			this.Velocity = inputDirection * moveSpeed;	
+			MoveAndSlide();
+	
+			UpdateAnimation();
 		}
 		//execute interaction if needed
 		if(Input.IsActionPressed("interact")){
 			ExecuteInteract();
 		}
-		//update velocity and move character
-		this.Velocity = inputDirection * moveSpeed;	
-		MoveAndSlide();
-	
-		UpdateAnimation();
+
 	}
 	
 	public void ExecuteInteract(){
@@ -61,6 +67,10 @@ public partial class Player : CharacterBody2D
 					GetTree().ChangeSceneToFile("res://levels/" + GetParent().GetNode<InteractionArea>("NextLevel").GetValue());
 				}
 				break;
+			case "dialogue":
+				moveable = true;
+				currentInteract.EndDialogue();
+				break;
 			}
 		}
 	}
@@ -79,6 +89,13 @@ public partial class Player : CharacterBody2D
 	{
 		this.currentInteract = area;
 		this.currentInteract.GetNode<Label>("Label").Text = currentInteract.GetLabel();
+		if(area.GetInteractType()=="dialogue"){
+			area.StartDialogue(area.GetValue());
+			moveable = false;
+			if(area.GetValue() == "1"){
+				hasWeapon = true;
+			}
+		}
 	}
 
 	private void _on_interaction_area_area_exited(InteractionArea area)
@@ -99,4 +116,7 @@ public partial class Player : CharacterBody2D
 		return Position;
 	}
 	
+	public void SetMoveable(bool val){
+		moveable = val;
+	}
 }
