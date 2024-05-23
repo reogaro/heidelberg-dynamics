@@ -1,5 +1,45 @@
 # Game Systems, tested using Xunit
 
+## Overview
+
+This project includes a basic health system implemented in C# with tests written using XUnit.
+
+## Setting Up the Environment
+
+### Using Nix
+
+1. **Install Nix:** Follow the instructions at https://nixos.org/download.html.
+2. **Enter Nix Shell:** Run the following command in the project directory to enter the Nix environment with Godot 4 and .NET SDK 8.
+   ```sh
+   nix-shell
+   ```
+
+### On Ubuntu
+
+If you prefer to set up .NET SDK 8 directly on Ubuntu without using Nix:
+
+1. **Install the Microsoft package repository and GPG keys:**
+   ```sh
+   wget https://packages.microsoft.com/config/ubuntu/20.04/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
+   sudo dpkg -i packages-microsoft-prod.deb
+   sudo apt-get update
+   sudo apt-get install -y dotnet-sdk-8.0
+   ```
+### On Windows
+
+   Install Nix on WSL.
+
+### Running Tests
+
+To run the XUnit tests in the `TestProject1` directory, use the following command:
+
+```sh
+dotnet test TestProject1.sln
+```
+
+This will build the project and execute all tests, providing a summary of the test results.
+
+This setup and guide are intended for internal use to streamline the development and testing process for the game systems project.
 ## Coding Style
 
 The Coding Style is based on the MS .NET C# coding style:
@@ -14,7 +54,7 @@ Both public and private variables are to be prefixed with an underscore.
 
 Example:
 
-```
+```cs
 
 using System;
 
