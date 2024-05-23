@@ -1,0 +1,4 @@
+[submodule "src/heidelberg-dynamics"]
+	path = src/game-systems
+	url = git@github.com:reogaro/heidelberg-dynamics.git
+	branch = game-systems
