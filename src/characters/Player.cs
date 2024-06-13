@@ -105,8 +105,12 @@ public partial class Player : CharacterBody2D
 	}
 	
 	public async void Fire(){
-		Node bulletInstance = bullet.Instantiate();
+		GetNode<AudioStreamPlayer>("BulletSound").Play();
+		RigidBody2D bulletInstance = bullet.Instantiate<RigidBody2D>();
 		GetParent().AddChild(bulletInstance);
+		bulletInstance.Position = GetNode<Node2D>("BulletPoint").GlobalPosition;
+		bulletInstance.RotationDegrees = RotationDegrees;
+		bulletInstance.ApplyImpulse(new Vector2(750, 0).Rotated(Rotation),new Vector2());
 		canFire = false;
 		await ToSignal(GetTree().CreateTimer(firerate), "timeout");
 		canFire = true;

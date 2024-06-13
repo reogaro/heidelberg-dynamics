@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class Turret : CharacterBody2D
+public partial class Bossturret : CharacterBody2D
 {
 	private bool hasWeapon = true;
 	private double firerate = 0.5;

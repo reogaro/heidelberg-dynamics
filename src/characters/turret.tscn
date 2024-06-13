@@ -1,13 +1,15 @@
-[gd_scene load_steps=5 format=3 uid="uid://t8qj6jpfpvri"]
+[gd_scene load_steps=7 format=3 uid="uid://t8qj6jpfpvri"]
 
 [ext_resource type="Script" path="res://characters/Turret.cs" id="1_iha0m"]
 [ext_resource type="Texture2D" uid="uid://cuqkw7g5rqa7m" path="res://art/player/towerDefense_tile249.png" id="1_yut3a"]
 [ext_resource type="Texture2D" uid="uid://b8j05dx1ch5t7" path="res://art/player/towerDefense_tile181.png" id="2_5e3gp"]
+[ext_resource type="AudioStream" uid="uid://dc03tjxd28530" path="res://audio/sound_effects/laser-104024.mp3" id="4_nrf4t"]
+[ext_resource type="AudioStream" uid="uid://b7synop7tsnvx" path="res://audio/sound_effects/8-bit-explosion-95847.mp3" id="5_y4clo"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_urnbw"]
 size = Vector2(50, 53)
 
-[node name="Turret" type="CharacterBody2D"]
+[node name="Turret" type="CharacterBody2D" groups=["entity"]]
 scale = Vector2(0.6, 0.6)
 script = ExtResource("1_iha0m")
 
@@ -17,8 +19,18 @@ shape = SubResource("RectangleShape2D_urnbw")
 
 [node name="Turret" type="Sprite2D" parent="."]
 z_index = 1
-position = Vector2(0, -11)
+position = Vector2(10, 0)
 texture = ExtResource("1_yut3a")
 
 [node name="Base" type="Sprite2D" parent="."]
 texture = ExtResource("2_5e3gp")
+
+[node name="BulletPoint" type="Node2D" parent="."]
+position = Vector2(38.3333, 0)
+
+[node name="BulletSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_nrf4t")
+
+[node name="HitSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_y4clo")
+bus = &"SFX"
