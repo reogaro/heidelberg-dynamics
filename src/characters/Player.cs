@@ -6,6 +6,7 @@ public partial class Player : CharacterBody2D
 	//private float moveSpeed = 175;
 	private float moveSpeed = 300;
 	private bool gotKeycard = false;
+	private bool gotExtraCard = true;
 	private bool moveable = true;
 	private InteractionArea currentInteract;
 	private AnimationTree animationTree;
@@ -54,16 +55,31 @@ public partial class Player : CharacterBody2D
 				//check if a keycard or a weapon is picked up
 				if(currentInteract.GetValue()=="keycard"){
 						this.gotKeycard = true;
+						
 						//update interaction labels and visability of keycard
 						GetParent().GetNode<StaticBody2D>("keycard").Visible = false;
 						GetParent().GetNode<StaticBody2D>("keycard").GetNode<InteractionArea>("InteractionArea").SetInteractType("collected");
 						GetParent().GetNode<StaticBody2D>("keycard").GetNode<InteractionArea>("InteractionArea").SetLabel("");
 						//change label of door
-						GetParent().GetNode<InteractionArea>("NextLevel").SetLabel("[E] to enter next level"); 
+						if(gotExtraCard){
+							GetParent().GetNode<InteractionArea>("NextLevel").SetLabel("[E] to enter next level"); 
+						}
+				}
+				else if(currentInteract.GetValue()=="keycard2"){
+						this.gotExtraCard = true;
+						
+						//update interaction labels and visability of keycard
+						GetParent().GetNode<StaticBody2D>("keycard2").Visible = false;
+						GetParent().GetNode<StaticBody2D>("keycard2").GetNode<InteractionArea>("InteractionArea").SetInteractType("collected");
+						GetParent().GetNode<StaticBody2D>("keycard2").GetNode<InteractionArea>("InteractionArea").SetLabel("");
+						//change label of door
+						if(gotKeycard){
+							GetParent().GetNode<InteractionArea>("NextLevel").SetLabel("[E] to enter next level");
+						} 
 				}
 				break;
 			case "next_level":
-				if(gotKeycard){
+				if(gotKeycard && gotExtraCard){
 					GetTree().ChangeSceneToFile("res://levels/" + GetParent().GetNode<InteractionArea>("NextLevel").GetValue());
 				}
 				break;
@@ -121,4 +137,7 @@ public partial class Player : CharacterBody2D
 		moveable = val;
 	}
 	
+	public void SetExtraCard(bool val){
+		gotExtraCard = val;
+	}
 }
