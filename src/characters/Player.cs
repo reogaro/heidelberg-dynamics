@@ -3,8 +3,8 @@ using System;
 
 public partial class Player : CharacterBody2D
 {
-	private float moveSpeed = 175;
-	private bool hasWeapon = false;
+	//private float moveSpeed = 175;
+	private float moveSpeed = 300;
 	private bool gotKeycard = false;
 	private bool moveable = true;
 	private InteractionArea currentInteract;
@@ -30,7 +30,7 @@ public partial class Player : CharacterBody2D
 			LookAt(GetGlobalMousePosition());
 
 			//fire bullet if pressed
-			if(Input.IsActionPressed("fire")&& canFire&& hasWeapon){
+			if(Input.IsActionPressed("fire")&& canFire){
 				Fire();
 			}
 			//update velocity and move character
@@ -92,9 +92,6 @@ public partial class Player : CharacterBody2D
 		if(area.GetInteractType()=="dialogue"){
 			area.StartDialogue(area.GetValue());
 			moveable = false;
-			if(area.GetValue() == "1"){
-				hasWeapon = true;
-			}
 		}
 	}
 
@@ -123,4 +120,5 @@ public partial class Player : CharacterBody2D
 	public void SetMoveable(bool val){
 		moveable = val;
 	}
+	
 }

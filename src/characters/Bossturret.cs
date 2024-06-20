@@ -9,29 +9,36 @@ public partial class Bossturret : CharacterBody2D
 	private PackedScene bullet = GD.Load<PackedScene>("res://projectiles/projectile.tscn");
 	private bool canFire = true;
 	
-	public override void _Ready(){
-	}
-	
 	public override void _PhysicsProcess(double delta){
 		seesPlayer = CheckLineOfSight();
 		if(hasWeapon){
 			LookAt(GetParent().GetNode<Player>("Player").GetPosition());
 			if(seesPlayer && canFire){
-				Fire();
+				Fire1();
+				Fire2();
 			}
 		}
 	}
 	
-	public async void Fire(){
+	public async void Fire1(){
 		GetNode<AudioStreamPlayer>("BulletSound").Play();
 		RigidBody2D bulletInstance = bullet.Instantiate<RigidBody2D>();
 		GetParent().AddChild(bulletInstance);
-		bulletInstance.Position = GetNode<Node2D>("BulletPoint").GlobalPosition;
+		bulletInstance.Position = GetNode<Node2D>("BulletPoint1").GlobalPosition;
 		bulletInstance.RotationDegrees = RotationDegrees;
 		bulletInstance.ApplyImpulse(new Vector2(750, 0).Rotated(Rotation),new Vector2());
 		canFire = false;
 		await ToSignal(GetTree().CreateTimer(firerate), "timeout");
 		canFire = true;
+	}
+	public async void Fire2(){
+		await ToSignal(GetTree().CreateTimer(0.25), "timeout");
+		GetNode<AudioStreamPlayer>("BulletSound").Play();
+		RigidBody2D bulletInstance = bullet.Instantiate<RigidBody2D>();
+		GetParent().AddChild(bulletInstance);
+		bulletInstance.Position = GetNode<Node2D>("BulletPoint2").GlobalPosition;
+		bulletInstance.RotationDegrees = RotationDegrees;
+		bulletInstance.ApplyImpulse(new Vector2(750, 0).Rotated(Rotation),new Vector2());
 	}
 	
 	public bool CheckLineOfSight(){
