@@ -1,27 +1,37 @@
 Storyboard
 
-
-
 Object of Game
 
-This game asks the player to escape the research facility of the player's creation by fighting a way through the security personal and other obstacles.
-Different weapons and powerups can be collected by the player to improve their chances of escaping. 
+This game asks the player to escape the research facility of the player’s creation by fighting a way through the security features and other obstacles.
+Different weapons and keycards can be collected by the player to improve their chances of escaping.
 
 Number of Players: 1
 
-Duration of Play: 30 minutes to 1 hour
+Duration of Play: 15 minutes
 
 How to Play
 
 The player can move by using the keyboard and aim their weapon with the mouse.
 The player needs to shoot their enemies before they shoot them in order to clear their path to freedom.
-The player can swap between different weapons they have collected throughout the game.
 To reach the next level the player needs to collect a key card that can be found in the level.
+
+Enemy Type
+
+Security Turret: A range type enemy that is stationary and shoots small projectiles in the players direction.
 
 Visuals
 
-The game takes place from a 2D top-down perspective. The art is realized through semi retro pixelart. The player character is always centered and is visualized as a robot dog. As the game progresses and upgrades are collected the appearance changes accordingly. The players health is shown on the top left. On the top right the curently selected weapon is indicated.
+The game takes place from a 2D top-down perspective. The art is realized through semi retro pixelart.
+The player character is always centered and is visualized as a robot dog. As the game progresses and upgrades are collected the appearance changes accordingly. The players health is shown on the top left.
+
+Audio
+
+The game features a sound track that plays during the playthrough.
+There are sound effects that indicate hitting and the elimination of an entity.
+There is a sound effect for level completion.
+There is a sound effect for weapon usage.
 
 Plot of the Game
 
-The game starts with an intro sequence introducing the current situation. The facility and the awakening of the robot dog (L41k4) are shown to the player. Then the player gains control of the robot and is introduced to the controls of the game. Then the player gets the objective to find a weapon and escape. On the way out guards and other laboratory personnel try to stop the player from escaping. After completing all challenges set to them the robot dog finally reaches freedom and wanders of into the woods which is the end of the game.
+The game starts with the awakening of the robot dog (L41k4). Then the player gains control of the robot and is introduced to the controls of the game. Then the player gets the objective to find a weapon and escape.
+On the way out turrets and other laboratory personnel try to stop the player from escaping. After completing all challenges set to them the robot dog finally reaches freedom and wanders of into the woods which is the end of the game.

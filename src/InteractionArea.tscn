@@ -1,0 +1,51 @@
+[gd_scene load_steps=4 format=3 uid="uid://drpf3xbvm2xmy"]
+
+[ext_resource type="Script" path="res://InteractionArea.cs" id="1_qnpfh"]
+[ext_resource type="Texture2D" uid="uid://cvkhqdpfvolw1" path="res://art/dialogue/dialogue_box.png" id="2_vmvyw"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oirxf"]
+size = Vector2(38, 20)
+
+[node name="InteractionArea" type="Area2D"]
+collision_layer = 2
+collision_mask = 0
+monitoring = false
+script = ExtResource("1_qnpfh")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_oirxf")
+
+[node name="Label" type="Label" parent="."]
+z_index = 20
+offset_left = -89.0
+offset_top = -77.0
+offset_right = 89.0
+offset_bottom = -54.0
+
+[node name="DialogueManager" type="NinePatchRect" parent="."]
+z_index = 20
+offset_left = -301.0
+offset_top = 44.0
+offset_right = 305.0
+offset_bottom = 168.0
+texture = ExtResource("2_vmvyw")
+patch_margin_left = 5
+patch_margin_top = 5
+patch_margin_right = 5
+patch_margin_bottom = 5
+
+[node name="Text" type="RichTextLabel" parent="DialogueManager"]
+layout_mode = 0
+offset_left = 31.0
+offset_top = 33.0
+offset_right = 571.0
+offset_bottom = 116.0
+scroll_active = false
+
+[node name="Name" type="RichTextLabel" parent="DialogueManager"]
+layout_mode = 0
+offset_left = 13.0
+offset_top = 10.0
+offset_right = 155.0
+offset_bottom = 30.0
+scroll_active = false
