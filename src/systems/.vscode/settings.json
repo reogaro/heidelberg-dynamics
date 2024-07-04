@@ -1,0 +1,4 @@
+{
+    "dotnet.defaultSolution": "TestProject1.sln",
+    "cmake.configureOnOpen": false
+}
