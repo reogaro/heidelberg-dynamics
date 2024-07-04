@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://d20omr72jn5no"]
+[gd_scene load_steps=9 format=3 uid="uid://d20omr72jn5no"]
 
 [ext_resource type="PackedScene" uid="uid://bdsdvd6v54xcx" path="res://characters/player.tscn" id="1_ulw2u"]
 [ext_resource type="TileSet" uid="uid://cg8moryowj5tm" path="res://levels/level_1.tres" id="2_y0dpw"]
@@ -6,6 +6,12 @@
 [ext_resource type="AudioStream" uid="uid://civnndwr3p8pe" path="res://audio/main_theme/main_theme.wav" id="5_4yvxb"]
 [ext_resource type="PackedScene" uid="uid://t8qj6jpfpvri" path="res://characters/turret.tscn" id="6_6vlf3"]
 [ext_resource type="PackedScene" uid="uid://h1hx8ikqh5dt" path="res://collectables/keycard/keycard.tscn" id="6_d1dj2"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cj6dq"]
+bg_color = Color(0.0392157, 0.827451, 0.713726, 0.686275)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_phnxs"]
+bg_color = Color(1, 0, 0, 0.686275)
 
 [node name="level_1" type="Node2D"]
 y_sort_enabled = true
@@ -66,3 +72,25 @@ autoplay = true
 
 [node name="Turret" parent="." instance=ExtResource("6_6vlf3")]
 position = Vector2(-515, -900)
+
+[node name="HUD" type="CanvasLayer" parent="."]
+
+[node name="Shield" type="ProgressBar" parent="HUD"]
+z_index = 34
+offset_right = 200.0
+offset_bottom = 20.0
+theme_override_styles/fill = SubResource("StyleBoxFlat_cj6dq")
+max_value = 1000.0
+step = 1.0
+value = 500.0
+show_percentage = false
+
+[node name="Health" type="ProgressBar" parent="HUD"]
+offset_top = 21.0
+offset_right = 200.0
+offset_bottom = 41.0
+theme_override_styles/fill = SubResource("StyleBoxFlat_phnxs")
+max_value = 1000.0
+step = 1.0
+value = 500.0
+show_percentage = false
