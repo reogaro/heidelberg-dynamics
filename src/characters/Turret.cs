@@ -4,7 +4,7 @@ using System;
 public partial class Turret : CharacterBody2D
 {
 	private bool hasWeapon = true;
-	private double firerate = 0.5;
+	private double firerate = 0.65;
 	private bool seesPlayer=false;
 	private PackedScene bullet = GD.Load<PackedScene>("res://projectiles/projectile.tscn");
 	private bool canFire = true;
@@ -15,7 +15,7 @@ public partial class Turret : CharacterBody2D
 	public override void _PhysicsProcess(double delta){
 		if(!GetNode<TurretHealth>("Health").health._alive){
 			hasWeapon = false;
-			Visible = false;
+			GetNode<Sprite2D>("Turret").Visible = false;
 		}
 		seesPlayer = CheckLineOfSight();
 		if(hasWeapon){

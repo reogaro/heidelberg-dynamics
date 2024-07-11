@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://dutkwlxg6urue"]
+
+[ext_resource type="Texture2D" uid="uid://3bhokqtwes4n" path="res://art/collectables/first_aid.png" id="1_f6c1p"]
+[ext_resource type="PackedScene" uid="uid://drpf3xbvm2xmy" path="res://InteractionArea.tscn" id="2_2sora"]
+
+[node name="Firstaid" type="StaticBody2D"]
+light_mask = 0
+visibility_layer = 4
+z_index = 5
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("1_f6c1p")
+
+[node name="InteractionArea" parent="." instance=ExtResource("2_2sora")]
+interactionType = "heal"

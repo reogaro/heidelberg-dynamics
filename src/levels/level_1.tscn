@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://d20omr72jn5no"]
+[gd_scene load_steps=11 format=3 uid="uid://d20omr72jn5no"]
 
 [ext_resource type="PackedScene" uid="uid://bdsdvd6v54xcx" path="res://characters/player.tscn" id="1_ulw2u"]
 [ext_resource type="TileSet" uid="uid://cg8moryowj5tm" path="res://levels/level_1.tres" id="2_y0dpw"]
@@ -7,12 +7,21 @@
 [ext_resource type="PackedScene" uid="uid://t8qj6jpfpvri" path="res://characters/turret.tscn" id="6_6vlf3"]
 [ext_resource type="PackedScene" uid="uid://h1hx8ikqh5dt" path="res://collectables/keycard/keycard.tscn" id="6_d1dj2"]
 [ext_resource type="Texture2D" uid="uid://cvkhqdpfvolw1" path="res://art/dialogue/dialogue_box.png" id="7_i35pv"]
+[ext_resource type="PackedScene" uid="uid://dutkwlxg6urue" path="res://collectables/firstaid.tscn" id="8_u180a"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cj6dq"]
 bg_color = Color(0.0392157, 0.827451, 0.713726, 0.686275)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_phnxs"]
 bg_color = Color(1, 0, 0, 0.686275)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
 
 [node name="level_1" type="Node2D"]
 y_sort_enabled = true
@@ -85,7 +94,7 @@ offset_bottom = 25.0
 theme_override_styles/fill = SubResource("StyleBoxFlat_cj6dq")
 max_value = 1000.0
 step = 1.0
-value = 500.0
+value = 1000.0
 show_percentage = false
 
 [node name="Health" type="ProgressBar" parent="HUD"]
@@ -121,3 +130,6 @@ offset_right = 290.0
 offset_bottom = 116.0
 text = "Game over, you died! 
 Press [E] to restart the game or [ESC] to exit."
+
+[node name="Firstaid" parent="." instance=ExtResource("8_u180a")]
+position = Vector2(394, -908)

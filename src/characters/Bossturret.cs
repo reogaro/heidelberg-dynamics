@@ -4,12 +4,21 @@ using System;
 public partial class Bossturret : CharacterBody2D
 {
 	private bool hasWeapon = true;
-	private double firerate = 0.5;
+	private bool counter = false;
+	private double firerate = 0.7;
 	private bool seesPlayer=false;
 	private PackedScene bullet = GD.Load<PackedScene>("res://projectiles/projectile.tscn");
 	private bool canFire = true;
 	
 	public override void _PhysicsProcess(double delta){
+		if(!GetNode<BossHealth>("Health").health._alive){
+			hasWeapon = false;
+			if(!counter){
+				GetParent().GetNode<Player>("Player").IncreaseBossCount();
+				counter = true;
+			}
+			GetNode<Sprite2D>("Turret").Visible = false;
+		}
 		seesPlayer = CheckLineOfSight();
 		if(hasWeapon){
 			LookAt(GetParent().GetNode<Player>("Player").GetPosition());
@@ -32,7 +41,7 @@ public partial class Bossturret : CharacterBody2D
 		canFire = true;
 	}
 	public async void Fire2(){
-		await ToSignal(GetTree().CreateTimer(0.25), "timeout");
+		await ToSignal(GetTree().CreateTimer(0.35), "timeout");
 		GetNode<AudioStreamPlayer>("BulletSound").Play();
 		RigidBody2D bulletInstance = bullet.Instantiate<RigidBody2D>();
 		GetParent().AddChild(bulletInstance);

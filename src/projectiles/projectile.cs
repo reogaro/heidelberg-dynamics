@@ -18,10 +18,18 @@ public partial class projectile : RigidBody2D
 		if(!body.IsInGroup("entity")){
 			QueueFree();
 		}
-		else{
-			//TODO: New entitiy group for player and enemy
+		else if(body.IsInGroup("player")){
 			QueueFree();
 			body.GetNode<PlayerHealth>("Health").health.ApplyDamage(50,50);
+			body.GetNode<AudioStreamPlayer>("HitSound").Play();
+		}
+		else if(body.IsInGroup("boss")){
+			QueueFree();
+			body.GetNode<BossHealth>("Health").health.ApplyDamage(50,50);
+			body.GetNode<AudioStreamPlayer>("HitSound").Play();
+		}
+		else{
+			QueueFree();
 			body.GetNode<TurretHealth>("Health").health.ApplyDamage(50,50);
 			body.GetNode<AudioStreamPlayer>("HitSound").Play();
 		}

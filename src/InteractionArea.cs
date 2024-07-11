@@ -48,6 +48,9 @@ public partial class InteractionArea : Area2D
 			case "2":
 				DisplayDialogue("Info!","You need to collect a keycard to open the door to the next level.");
 				break;
+			case "3":
+				DisplayDialogue("Info!","You escaped! You can now enjoy your freedom.");
+				break;
 			default:
 				EndDialogue();
 				break;

@@ -8,11 +8,19 @@
 [ext_resource type="PackedScene" uid="uid://drpf3xbvm2xmy" path="res://InteractionArea.tscn" id="6_i1a0y"]
 [ext_resource type="Texture2D" uid="uid://cvkhqdpfvolw1" path="res://art/dialogue/dialogue_box.png" id="7_4d8p2"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fn761"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dvhip"]
 bg_color = Color(0.0392157, 0.827451, 0.713726, 0.686275)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_d1ttc"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1yfk1"]
 bg_color = Color(1, 0, 0, 0.686275)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
 
 [node name="level_2" type="Node2D"]
 
@@ -67,10 +75,10 @@ offset_left = 5.0
 offset_top = 5.0
 offset_right = 205.0
 offset_bottom = 25.0
-theme_override_styles/fill = SubResource("StyleBoxFlat_fn761")
+theme_override_styles/fill = SubResource("StyleBoxFlat_dvhip")
 max_value = 1000.0
 step = 1.0
-value = 500.0
+value = 1000.0
 show_percentage = false
 
 [node name="Health" type="ProgressBar" parent="HUD"]
@@ -78,7 +86,7 @@ offset_left = 5.0
 offset_top = 26.0
 offset_right = 205.0
 offset_bottom = 46.0
-theme_override_styles/fill = SubResource("StyleBoxFlat_d1ttc")
+theme_override_styles/fill = SubResource("StyleBoxFlat_1yfk1")
 max_value = 1000.0
 step = 1.0
 value = 500.0

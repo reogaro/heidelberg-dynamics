@@ -3,11 +3,11 @@ using System;
 
 public partial class Player : CharacterBody2D
 {
-	//private float moveSpeed = 175;
-	private float moveSpeed = 300;
+	private float moveSpeed = 175;
 	private bool gotKeycard = false;
 	private bool gotExtraCard = true;
 	private bool moveable = true;
+	private int bossCount = 0;
 	private InteractionArea currentInteract;
 	private AnimationTree animationTree;
 	private AnimationNodeStateMachinePlayback stateMachine;
@@ -55,7 +55,21 @@ public partial class Player : CharacterBody2D
 				GetTree().ChangeSceneToFile("res://levels/level_1.tscn");
 			}
 		}
-
+		
+		if(Input.IsActionPressed("exit")){
+			GetTree().Quit();
+		}
+		
+		if(Input.IsActionPressed("cheat")){
+			GetTree().ChangeSceneToFile("res://levels/level_6.tscn");
+		}
+		if(Input.IsActionPressed("speed")){
+			moveSpeed = 500;
+		}
+		
+		if(bossCount == 2){
+			EndGame();
+		}
 	}
 	
 	public void ExecuteInteract(){
@@ -114,11 +128,17 @@ public partial class Player : CharacterBody2D
 
 	private void _on_interaction_area_area_entered(InteractionArea area)
 	{
-		this.currentInteract = area;
-		this.currentInteract.GetNode<Label>("Label").Text = currentInteract.GetLabel();
-		if(area.GetInteractType()=="dialogue"){
-			area.StartDialogue(area.GetValue());
-			moveable = false;
+		if(area.GetInteractType()!="heal"){
+			this.currentInteract = area;
+			this.currentInteract.GetNode<Label>("Label").Text = currentInteract.GetLabel();
+			if(area.GetInteractType()=="dialogue"){
+				area.StartDialogue(area.GetValue());
+				moveable = false;
+			}
+		}
+		else{
+			GetNode<PlayerHealth>("Health").health.HealBoth(500);
+			area.GetParent().QueueFree();
 		}
 	}
 
@@ -150,5 +170,14 @@ public partial class Player : CharacterBody2D
 	
 	public void SetExtraCard(bool val){
 		gotExtraCard = val;
+	}
+	
+	public void IncreaseBossCount(){
+		bossCount++;
+	}
+	
+	public async void EndGame(){
+		await ToSignal(GetTree().CreateTimer(10), "timeout");
+		GetTree().ChangeSceneToFile("res://levels/level_7.tscn");
 	}
 }
