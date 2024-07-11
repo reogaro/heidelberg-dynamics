@@ -13,6 +13,10 @@ public partial class Turret : CharacterBody2D
 	}
 	
 	public override void _PhysicsProcess(double delta){
+		if(!GetNode<TurretHealth>("Health").health._alive){
+			hasWeapon = false;
+			Visible = false;
+		}
 		seesPlayer = CheckLineOfSight();
 		if(hasWeapon){
 			LookAt(GetParent().GetNode<Player>("Player").GetPosition());

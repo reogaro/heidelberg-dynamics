@@ -19,7 +19,10 @@ public partial class projectile : RigidBody2D
 			QueueFree();
 		}
 		else{
+			//TODO: New entitiy group for player and enemy
 			QueueFree();
+			body.GetNode<PlayerHealth>("Health").health.ApplyDamage(50,50);
+			body.GetNode<TurretHealth>("Health").health.ApplyDamage(50,50);
 			body.GetNode<AudioStreamPlayer>("HitSound").Play();
 		}
 	}

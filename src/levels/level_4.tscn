@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://8ihy06xn706u"]
+[gd_scene load_steps=11 format=3 uid="uid://8ihy06xn706u"]
 
 [ext_resource type="Script" path="res://levels/level_4.cs" id="1_1lenl"]
 [ext_resource type="PackedScene" uid="uid://bdsdvd6v54xcx" path="res://characters/player.tscn" id="1_crn58"]
@@ -7,6 +7,13 @@
 [ext_resource type="PackedScene" uid="uid://t8qj6jpfpvri" path="res://characters/turret.tscn" id="4_1yacb"]
 [ext_resource type="PackedScene" uid="uid://h1hx8ikqh5dt" path="res://collectables/keycard/keycard.tscn" id="5_lkcno"]
 [ext_resource type="PackedScene" uid="uid://drpf3xbvm2xmy" path="res://InteractionArea.tscn" id="7_r410h"]
+[ext_resource type="Texture2D" uid="uid://cvkhqdpfvolw1" path="res://art/dialogue/dialogue_box.png" id="8_u24si"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_d3i7w"]
+bg_color = Color(0.0392157, 0.827451, 0.713726, 0.686275)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6exlo"]
+bg_color = Color(1, 0, 0, 0.686275)
 
 [node name="level_4" type="Node2D"]
 script = ExtResource("1_1lenl")
@@ -67,3 +74,51 @@ position = Vector2(3, -324)
 interactionLabel = "Collect the two keycards first"
 interactionValue = "level_5.tscn"
 interactionType = "next_level"
+
+[node name="HUD" type="CanvasLayer" parent="."]
+
+[node name="Shield" type="ProgressBar" parent="HUD"]
+z_index = 34
+offset_left = 5.0
+offset_top = 5.0
+offset_right = 205.0
+offset_bottom = 25.0
+theme_override_styles/fill = SubResource("StyleBoxFlat_d3i7w")
+max_value = 1000.0
+step = 1.0
+value = 500.0
+show_percentage = false
+
+[node name="Health" type="ProgressBar" parent="HUD"]
+offset_left = 5.0
+offset_top = 26.0
+offset_right = 205.0
+offset_bottom = 46.0
+theme_override_styles/fill = SubResource("StyleBoxFlat_6exlo")
+max_value = 1000.0
+step = 1.0
+value = 500.0
+show_percentage = false
+
+[node name="Defeat" type="NinePatchRect" parent="HUD"]
+visible = false
+offset_left = 183.0
+offset_top = 120.0
+offset_right = 463.0
+offset_bottom = 232.0
+size_flags_horizontal = 0
+size_flags_vertical = 4
+texture = ExtResource("8_u24si")
+patch_margin_left = 5
+patch_margin_top = 5
+patch_margin_right = 5
+patch_margin_bottom = 5
+
+[node name="RichTextLabel" type="RichTextLabel" parent="HUD/Defeat"]
+layout_mode = 0
+offset_left = 18.0
+offset_top = 9.0
+offset_right = 290.0
+offset_bottom = 116.0
+text = "Game over, you died! 
+Press [E] to restart the game or [ESC] to exit."

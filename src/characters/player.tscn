@@ -1,9 +1,10 @@
-[gd_scene load_steps=19 format=3 uid="uid://bdsdvd6v54xcx"]
+[gd_scene load_steps=20 format=3 uid="uid://bdsdvd6v54xcx"]
 
 [ext_resource type="Script" path="res://characters/Player.cs" id="1_07cog"]
 [ext_resource type="Texture2D" uid="uid://c6uqp22eej8m8" path="res://art/dog-walk.png" id="2_v7qey"]
 [ext_resource type="AudioStream" uid="uid://d0f7dfhj6b0du" path="res://audio/sound_effects/8-bit-laser-151672.mp3" id="3_4siea"]
 [ext_resource type="AudioStream" uid="uid://b7synop7tsnvx" path="res://audio/sound_effects/8-bit-explosion-95847.mp3" id="4_bk3fa"]
+[ext_resource type="Script" path="res://characters/PlayerHealth.cs" id="5_3shvh"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vxc4r"]
 size = Vector2(24, 14)
@@ -149,6 +150,9 @@ bus = &"SFX"
 [node name="HitSound" type="AudioStreamPlayer" parent="." groups=["entity"]]
 stream = ExtResource("4_bk3fa")
 bus = &"SFX"
+
+[node name="Health" type="Node2D" parent="."]
+script = ExtResource("5_3shvh")
 
 [connection signal="area_entered" from="InteractionComponents/InteractionArea" to="." method="_on_interaction_area_area_entered"]
 [connection signal="area_exited" from="InteractionComponents/InteractionArea" to="." method="_on_interaction_area_area_exited"]

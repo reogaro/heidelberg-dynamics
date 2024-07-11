@@ -14,17 +14,21 @@ public partial class Player : CharacterBody2D
 	private double firerate = 0.5;
 	private PackedScene bullet = GD.Load<PackedScene>("res://projectiles/projectile.tscn");
 	private bool canFire = true;
-	private Health health = new Health(1000,1000,100,100,100,100);
 	
 	public override void _Ready(){
+		moveable = true;
 		this.gotKeycard = false;
 		animationTree = GetNode<AnimationTree>("AnimationTree");
 		stateMachine = (AnimationNodeStateMachinePlayback)animationTree.Get("parameters/playback");
 	}
 	
 	public override void _PhysicsProcess(double delta){
-		GetParent().GetNode<CanvasLayer>("HUD").GetNode<ProgressBar>("Health").Value = health._hp;
-		GetParent().GetNode<CanvasLayer>("HUD").GetNode<ProgressBar>("Shield").Value = health._shield;
+		GetParent().GetNode<CanvasLayer>("HUD").GetNode<ProgressBar>("Health").Value = GetNode<PlayerHealth>("Health").health._hp;
+		GetParent().GetNode<CanvasLayer>("HUD").GetNode<ProgressBar>("Shield").Value = GetNode<PlayerHealth>("Health").health._shield;
+		if(!GetNode<PlayerHealth>("Health").health._alive){
+			moveable = false;
+			GetParent().GetNode<CanvasLayer>("HUD").GetNode<NinePatchRect>("Defeat").Visible = true;
+		}
 		//get input directions
 		Vector2 inputDirection = new Vector2(
 			Input.GetActionRawStrength("right") - Input.GetActionRawStrength("left"),
@@ -45,7 +49,11 @@ public partial class Player : CharacterBody2D
 		}
 		//execute interaction if needed
 		if(Input.IsActionPressed("interact")){
+			if(GetNode<PlayerHealth>("Health").health._alive)
 			ExecuteInteract();
+			else{
+				GetTree().ChangeSceneToFile("res://levels/level_1.tscn");
+			}
 		}
 
 	}
