@@ -27,7 +27,11 @@ If you prefer to set up .NET SDK 8 directly on Ubuntu without using Nix:
    ```
 ### On Windows
 
-   Install Nix on WSL.
+- Install VSCode
+- Install [.NET 8.0 SDK](https://dotnet.microsoft.com/en-us/download/dotnet/sdk-for-vs-code) for VSCode
+- Use PowerShell and dotnet.exe instead of bash and dotnet
+
+Or just use [WSL](https://learn.microsoft.com/en-us/windows/wsl/install)
 
 ### Running Tests
 
