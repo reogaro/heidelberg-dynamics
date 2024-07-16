@@ -5,6 +5,8 @@ A video game about a robot dog on a daring escape
 
 This project uses git submodules. Remember to initialize them as well when cloning.
 
+Run in Bash or PowerShell:
+
 ```sh
-git clone --recurse-submodules -j8 git@github.com:reogaro/heidelberg-dynamics.git
+git clone --recurse-submodules -j8 https://github.com/reogaro/heidelberg-dynamics.git
 ```
