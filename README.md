@@ -10,8 +10,8 @@ GitHub Desktop on Windows doesn't play nice with Git Submodules.
 To work around this, we use Git on PowerShell. Most comfortably done through [Windows Terminal](https://www.microsoft.com/store/productId/9N0DX20HK701?ocid=pdpshare).
 
 ```powershell
-cd .\Documents\GitHub\heidelberg-dynamics\
-git submodule update --init --recursive
+cd .\Documents\GitHub\
+git clone --recurse-submodules -j8 https://github.com/reogaro/heidelberg-dynamics.git
 ```
 
 This *should* open an authentification window. Hopefully.
