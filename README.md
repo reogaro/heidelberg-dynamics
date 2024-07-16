@@ -4,7 +4,20 @@
 
 This project includes a basic health system implemented in C# with tests written using XUnit.
 
-## Setting Up the Environment
+## Submodules on Windows
+
+GitHub Desktop on Windows doesn't play nice with Git Submodules.
+To work around this, we use Git on PowerShell. Most comfortably done through [Windows Terminal](https://www.microsoft.com/store/productId/9N0DX20HK701?ocid=pdpshare).
+
+```powershell
+cd .\Documents\GitHub\heidelberg-dynamics\
+git submodule update --init --recursive
+```
+
+This *should* open an authentification window. Hopefully.
+To update the submodule, use `git pull --recurse-submodules`.
+
+## Setting Up the Environment for Development
 
 ### Using Nix
 
