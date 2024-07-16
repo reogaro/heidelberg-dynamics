@@ -14,8 +14,7 @@ cd .\Documents\GitHub\
 git clone --recurse-submodules -j8 https://github.com/reogaro/heidelberg-dynamics.git
 ```
 
-This *should* open an authentification window. Hopefully.
-To update the submodule, use `git pull --recurse-submodules`.
+To update the submodule, use `git submodule update --remote`.
 
 ## Setting Up the Environment for Development
 
