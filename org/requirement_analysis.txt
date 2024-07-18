@@ -26,24 +26,34 @@
  2.1. Overview
 
  2.2. Functional requirements
-  2.2.1 
+
   The player is required to be able to move the playable character throughout the levels. WASD for up, down, left, right.
   The player character should be able to aim using the mouse, e.g. the character aims in the cursor direction at all times.
   The player character should move throughout a level, interacting with the environment. e.g. bump into a wall, walk down a corridor, etc. (Collision).
-  The playable character and the enemies have a certain number of hitpoints. When they run out the character is eliminated.
+  The playable character and the enemies have a certain number of hitpoints. 
+  Projectiles have a limited range.
+  Projectiles get destroyed when colliding with another object (i.e. walls, shelves, etc.).
+  When two projectiles collide they cancel each other out.
+  When the hitpoints of a entitiy run out, the character is eliminated.
   The health and shield of the entities is limited between two values that are immutable.
-  The game is required to have a useable weapons which the player can use to reduce the hitpoints of enemies.
-  There also have to be different enemies which can attack and damage the player.
+  The game is required to have a useable weapon which the player can use to reduce the hitpoints of enemies.
+  There also have to be different enemies.
+  The enemies can attack and damage the player.
   The player must also be able to defeat these enemies with a certain amount of attacks.
-  To complete a level the player must be able to collect keycards which unlock the next level.
+  There are keycards the player can collect in each level.
+  To complete a level the player must be able to collect the keycards first.
+  The game features a health system that manages all the damage and health variables of all entities in the game.
   There are first aid kits that replenish the player's health and shield.
+  There is a enemy type "turret" that aims at the player and shoots projectiles at them.
+  There is a enemy type "bossturret" that aims at the player and shoots projectiles at them but at a significant faster pace as the normal "turret".
+  The player can win the game by defeating the two bossturret enemies in the last level.
    
  2.3. Nonfunctional requirements
 
   2.3.1. User interface and human factors
 
    The game features a health and a shield bar that is visible through a HUD to the player at all times.
-   The game contains a indicator that shows the player if they already collected the key card of the current level.
+   The game contains a indicator that shows the player if they already collected all keycards of the current level.
    After defeat, the player can restart the game with a press of a button.
    The program can be closed with the press of a button.
    The controls of the game can be learned by the within 3 minutes.
@@ -98,8 +108,10 @@
   2.3.11. Audio
 
    The game features its own soundtrack that is running in the background during the playthrough.
+   There is a sound effect when the player shoots a projectile.
+   There is a different sound effect when enemies shoot projectiles.
    There are sounds when the player is hit.
-   There are sounds hitting enemies.
+   There are sounds for hitting enemies.
 
  2.4. Pseudo requirements
 
