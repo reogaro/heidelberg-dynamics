@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://d20omr72jn5no"]
+[gd_scene load_steps=12 format=3 uid="uid://d20omr72jn5no"]
 
 [ext_resource type="PackedScene" uid="uid://bdsdvd6v54xcx" path="res://characters/player.tscn" id="1_ulw2u"]
 [ext_resource type="TileSet" uid="uid://cg8moryowj5tm" path="res://levels/level_1.tres" id="2_y0dpw"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://t8qj6jpfpvri" path="res://characters/turret.tscn" id="6_6vlf3"]
 [ext_resource type="PackedScene" uid="uid://h1hx8ikqh5dt" path="res://collectables/keycard/keycard.tscn" id="6_d1dj2"]
 [ext_resource type="Texture2D" uid="uid://cvkhqdpfvolw1" path="res://art/dialogue/dialogue_box.png" id="7_i35pv"]
+[ext_resource type="Texture2D" uid="uid://c0n81q2cod14h" path="res://art/collectables/keycard/keycard_red.png" id="8_c2dko"]
 [ext_resource type="PackedScene" uid="uid://dutkwlxg6urue" path="res://collectables/firstaid.tscn" id="8_u180a"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cj6dq"]
@@ -130,6 +131,12 @@ offset_right = 290.0
 offset_bottom = 116.0
 text = "Game over, you died! 
 Press [E] to restart the game or [ESC] to exit."
+
+[node name="Sprite2D" type="Sprite2D" parent="HUD"]
+visible = false
+position = Vector2(22, 69)
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("8_c2dko")
 
 [node name="Firstaid" parent="." instance=ExtResource("8_u180a")]
 position = Vector2(394, -908)

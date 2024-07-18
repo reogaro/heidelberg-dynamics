@@ -80,6 +80,7 @@ public partial class Player : CharacterBody2D
 				//check if a keycard or a weapon is picked up
 				if(currentInteract.GetValue()=="keycard"){
 						this.gotKeycard = true;
+						GetParent().GetNode<CanvasLayer>("HUD").GetNode<Sprite2D>("Sprite2D").Visible = true;
 						
 						//update interaction labels and visability of keycard
 						GetParent().GetNode<StaticBody2D>("keycard").Visible = false;
@@ -92,7 +93,7 @@ public partial class Player : CharacterBody2D
 				}
 				else if(currentInteract.GetValue()=="keycard2"){
 						this.gotExtraCard = true;
-						
+						GetParent().GetNode<CanvasLayer>("HUD").GetNode<Sprite2D>("Sprite2D2").Visible = true;
 						//update interaction labels and visability of keycard
 						GetParent().GetNode<StaticBody2D>("keycard2").Visible = false;
 						GetParent().GetNode<StaticBody2D>("keycard2").GetNode<InteractionArea>("InteractionArea").SetInteractType("collected");

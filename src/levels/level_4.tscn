@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://8ihy06xn706u"]
+[gd_scene load_steps=12 format=3 uid="uid://8ihy06xn706u"]
 
 [ext_resource type="Script" path="res://levels/level_4.cs" id="1_1lenl"]
 [ext_resource type="PackedScene" uid="uid://bdsdvd6v54xcx" path="res://characters/player.tscn" id="1_crn58"]
@@ -8,15 +8,16 @@
 [ext_resource type="PackedScene" uid="uid://h1hx8ikqh5dt" path="res://collectables/keycard/keycard.tscn" id="5_lkcno"]
 [ext_resource type="PackedScene" uid="uid://drpf3xbvm2xmy" path="res://InteractionArea.tscn" id="7_r410h"]
 [ext_resource type="Texture2D" uid="uid://cvkhqdpfvolw1" path="res://art/dialogue/dialogue_box.png" id="8_u24si"]
+[ext_resource type="Texture2D" uid="uid://c0n81q2cod14h" path="res://art/collectables/keycard/keycard_red.png" id="9_ibvp6"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ngopx"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3ur2u"]
 bg_color = Color(0.0392157, 0.827451, 0.713726, 0.686275)
 corner_radius_top_left = 6
 corner_radius_top_right = 6
 corner_radius_bottom_right = 6
 corner_radius_bottom_left = 6
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_16y58"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p72tq"]
 bg_color = Color(1, 0, 0, 0.686275)
 corner_radius_top_left = 6
 corner_radius_top_right = 6
@@ -91,7 +92,7 @@ offset_left = 5.0
 offset_top = 5.0
 offset_right = 205.0
 offset_bottom = 25.0
-theme_override_styles/fill = SubResource("StyleBoxFlat_ngopx")
+theme_override_styles/fill = SubResource("StyleBoxFlat_3ur2u")
 max_value = 1000.0
 step = 1.0
 value = 1000.0
@@ -102,7 +103,7 @@ offset_left = 5.0
 offset_top = 26.0
 offset_right = 205.0
 offset_bottom = 46.0
-theme_override_styles/fill = SubResource("StyleBoxFlat_16y58")
+theme_override_styles/fill = SubResource("StyleBoxFlat_p72tq")
 max_value = 1000.0
 step = 1.0
 value = 500.0
@@ -130,3 +131,15 @@ offset_right = 290.0
 offset_bottom = 116.0
 text = "Game over, you died! 
 Press [E] to restart the game or [ESC] to exit."
+
+[node name="Sprite2D" type="Sprite2D" parent="HUD"]
+visible = false
+position = Vector2(22, 70)
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("9_ibvp6")
+
+[node name="Sprite2D2" type="Sprite2D" parent="HUD"]
+visible = false
+position = Vector2(63, 70)
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("9_ibvp6")
