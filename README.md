@@ -8,3 +8,4 @@ You may want to read:
 
 - [Coding Style](docs/coding_style.md)
 - [Developer Information](docs/development.md)
+- [Project Architecture](docs/project_architecture.md)

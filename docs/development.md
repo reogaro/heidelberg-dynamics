@@ -2,7 +2,7 @@
 
 This file contains all the nessecary information to set up your development environment and work on the game systems.
 
-## Submodules on Windows
+## Submodules on Windows for use in `master`
 
 GitHub Desktop on Windows doesn't play nice with Git Submodules.
 To work around this, we use Git on PowerShell. Most comfortably done through [Windows Terminal](https://www.microsoft.com/store/productId/9N0DX20HK701?ocid=pdpshare).
@@ -14,7 +14,9 @@ git clone --recurse-submodules -j8 https://github.com/reogaro/heidelberg-dynamic
 
 To update the submodule, use `git submodule update --remote`.
 
-## Setting Up the Environment for Development (Compiling & Testing)
+## Developing & Testing the Branch on its own, without godot and `master`
+
+Development work on this branch can be done without godot or the `master` branch.
 
 ### Using Nix
 
@@ -57,6 +59,8 @@ This will build the project and execute all tests, providing a summary of the te
 
 This Project uses Doxygen for Documentation. Just run `doxygen` in this projects root directory and the documentation will be generated in the `docs/doxygen` folder.
 
+Creating PDFs from the LaTEX output also requires pdflatex.
+
 ### Windows
 
 - [Download](https://www.doxygen.nl/download.html) & install Doxygen
@@ -64,6 +68,13 @@ This Project uses Doxygen for Documentation. Just run `doxygen` in this projects
 - `cd` to the `heidelberg-dynamics` folder
 - run `doxygen.exe`
 - open `docs/doxygen/html/index.html` in your browser
+
+**For PDF Generation**
+- Install [TeX Live](https://tug.org/texlive/windows.html#install) for Windows
+- Update TeX Live Packages
+- Reboot your PC (seriously)
+- run `docs/doxygen/latex/build.bat`
+- open `docs/doxygen/latex/refman.pdf`
 
 ### Ubuntu
 

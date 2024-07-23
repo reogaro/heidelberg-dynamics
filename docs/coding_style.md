@@ -10,7 +10,7 @@ Functions, Parameters, and Variables of any kind are to be named in camelCase.
 
 Both public and private variables are to be prefixed with an underscore.
 
-Example:
+## Example
 
 ```cs
 
