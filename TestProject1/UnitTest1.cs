@@ -2,6 +2,9 @@ namespace TestProject1;
 using Xunit;
 using Xunit.Abstractions;
 
+/// <summary>
+/// Unit Tests for Health.cs
+/// </summary>
 public class UnitTest1
 {
     private readonly ITestOutputHelper _testLogger;
@@ -11,6 +14,9 @@ public class UnitTest1
     }
 
     [Fact]
+    /// <summary>
+    /// Tests the constructor
+    /// </summary>
     public void Health_Initialization_Test()
     {
         int initialResistancePhysical = 100;
@@ -41,6 +47,9 @@ public class UnitTest1
     [InlineData(1000, 1000, 2000, 0, 0, false)] // Exact deadly damage
     [InlineData(1000, 1000, 3000, 0, 0, false)] // Overkill
     [InlineData(1000, 1000, 0, 1000, 1000, true)] // No damage
+    /// <summary>
+    /// Tests ApplyTrueDamage()
+    /// </summary>
     public void True_Damage_Test(
         int startHP, int startShield, int appliedDamage,
         int expectedHp, int expectedShield, bool expectedAlive)
@@ -64,6 +73,9 @@ public class UnitTest1
     [InlineData(500, 500, 1000, 1000, 750, 750, 500, 0, true)] // Destroy shield with extra damage to health
     [InlineData(500, 500, 1000, 1000, 1000, 1000, 0, 0, false)] // Exactly deadly damage
     [InlineData(1000, 1000, 1000, 1000, 9000, 9000, 1000, 1000, true)]// Resistance blocks damage
+    /// <summary>
+    /// Tests ApplyDamage()
+    /// </summary>
     public void ApplyDamage_Test(
         int initialResistancePhysical, int initialResistanceElectric,
         int initialVulnPhysical, int initialVulnElectric,
@@ -92,6 +104,9 @@ public class UnitTest1
     [InlineData(1000, 1000, 500, 500, 750, 1000, 750, true)] // partial heal both
     [InlineData(1000, 1000, 500, 500, 1000, 1000, 1000, true)] // heal both
     [InlineData(1000, 1000, 500, 500, 2000, 1000, 1000, true)] // overheal both
+    /// <summary>
+    /// Tests HealBoth()
+    /// </summary>
     public void HealBoth_Test(
         int initialHP, int initialShield,
         int damageHP, int damageShield, int healAmount,
