@@ -1,8 +1,6 @@
 # Coding Style
 
-The Coding Style is based on the MS .NET C# coding style:
-
-https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/coding-style/coding-conventions
+The Coding Style is based on the [MS .NET C# coding style](https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/coding-style/coding-conventions):
 
 Class Names and Namespaces are named in PascalCase.
 
