@@ -1,0 +1,82 @@
+\doxysection{Health Class Reference}
+\hypertarget{class_health}{}\label{class_health}\index{Health@{Health}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_health_ac08a17bbb1d8cdc635ffe210f40c8d21}\label{class_health_ac08a17bbb1d8cdc635ffe210f40c8d21} 
+{\bfseries Health} (int hp\+Max, int shield\+Max, int initial\+Resistance\+Physical, int initial\+Resistance\+Electric, int vuln\+Physical, int vuln\+Electric)
+\item 
+\Hypertarget{class_health_a7390db3b34b0e0c3dbcef7803207c8c0}\label{class_health_a7390db3b34b0e0c3dbcef7803207c8c0} 
+void {\bfseries Apply\+True\+Damage} (int damage)
+\item 
+\Hypertarget{class_health_ab5edbe1f3a891455fca1141f037739c7}\label{class_health_ab5edbe1f3a891455fca1141f037739c7} 
+void {\bfseries Apply\+Damage} (int damage\+Physical, int damage\+Electric)
+\item 
+\Hypertarget{class_health_a6fa34b8f6c7cf87f764a46e280ac10b6}\label{class_health_a6fa34b8f6c7cf87f764a46e280ac10b6} 
+void {\bfseries Heal\+HP} (int amount)
+\item 
+\Hypertarget{class_health_a8a5936dfe50d09fcbedf74ba4877ee88}\label{class_health_a8a5936dfe50d09fcbedf74ba4877ee88} 
+void {\bfseries Heal\+Shield} (int amount)
+\item 
+\Hypertarget{class_health_a85af0b68ca66d20704ad037e911b6711}\label{class_health_a85af0b68ca66d20704ad037e911b6711} 
+void {\bfseries Heal\+Both} (int heal\+Amount)
+\item 
+\Hypertarget{class_health_a1617b9ad3a098227ecfcaccb2abbf083}\label{class_health_a1617b9ad3a098227ecfcaccb2abbf083} 
+void {\bfseries Destroy\+Shield} ()
+\item 
+\Hypertarget{class_health_a8f0b78affc165dbae18158b37df2b3e8}\label{class_health_a8f0b78affc165dbae18158b37df2b3e8} 
+void {\bfseries Restore\+Health} ()
+\item 
+\Hypertarget{class_health_a60577673663fe92f1c9023a33b3c59df}\label{class_health_a60577673663fe92f1c9023a33b3c59df} 
+void {\bfseries Restore\+Shield} ()
+\item 
+\Hypertarget{class_health_a69891ba86d3e794b881a82d4d95f10cf}\label{class_health_a69891ba86d3e794b881a82d4d95f10cf} 
+void {\bfseries damage\+Shield} (int damage)
+\item 
+\Hypertarget{class_health_a6bebb04a35e51ea6dd4ba81698b4ea7a}\label{class_health_a6bebb04a35e51ea6dd4ba81698b4ea7a} 
+void {\bfseries damage\+HP} (int damage)
+\item 
+\Hypertarget{class_health_a2faa8ec2ba1f6c56e11a0174640ea16d}\label{class_health_a2faa8ec2ba1f6c56e11a0174640ea16d} 
+void {\bfseries Revive} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_health_a2e2485c0795b2436db4e39e914022052}\label{class_health_a2e2485c0795b2436db4e39e914022052} 
+const int {\bfseries \+\_\+damage\+Bias} = 12
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_health_a7889c14eb09d8d492f862a20051bb399}\label{class_health_a7889c14eb09d8d492f862a20051bb399} 
+int {\bfseries \+\_\+hp}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\item 
+\Hypertarget{class_health_a82b57c1cb189d073543b82b5603c1eef}\label{class_health_a82b57c1cb189d073543b82b5603c1eef} 
+int {\bfseries \+\_\+hp\+Max}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\item 
+\Hypertarget{class_health_acfb486b3aef6b60c422195b439e3c873}\label{class_health_acfb486b3aef6b60c422195b439e3c873} 
+int {\bfseries \+\_\+shield}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\item 
+\Hypertarget{class_health_adbb1fe5913a4a95de169eb1a83b44ae5}\label{class_health_adbb1fe5913a4a95de169eb1a83b44ae5} 
+int {\bfseries \+\_\+shield\+Max}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\item 
+\Hypertarget{class_health_a82f549c12678992abc2e26258eed1c13}\label{class_health_a82f549c12678992abc2e26258eed1c13} 
+int {\bfseries \+\_\+resistance\+Physical}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\item 
+\Hypertarget{class_health_a9d5cb0bd1c9ff99097fde770064bbb42}\label{class_health_a9d5cb0bd1c9ff99097fde770064bbb42} 
+int {\bfseries \+\_\+resistance\+Electric}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\item 
+\Hypertarget{class_health_afe3921f3e01f57ec8a15a2b08e0918a6}\label{class_health_afe3921f3e01f57ec8a15a2b08e0918a6} 
+int {\bfseries \+\_\+vuln\+Physical}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\item 
+\Hypertarget{class_health_ab9fd0837c0ada5f6551a5f89ad64d116}\label{class_health_ab9fd0837c0ada5f6551a5f89ad64d116} 
+int {\bfseries \+\_\+vuln\+Electric}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\item 
+\Hypertarget{class_health_a8a528a6df3c13ad288abff95c1ba4fc2}\label{class_health_a8a528a6df3c13ad288abff95c1ba4fc2} 
+bool {\bfseries \+\_\+alive} = true\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+systems/\+Test\+Project1/Health.\+cs\end{DoxyCompactItemize}

@@ -1,0 +1,77 @@
+\chapter{GDMUT}
+\hypertarget{index}{}\label{index}\index{GDMUT@{GDMUT}}
+\label{index_md__r_e_a_d_m_e}%
+\Hypertarget{index_md__r_e_a_d_m_e}%
+ A unit testing framework for C\# scripts in Godot. See the Godot Asset Page Here\+: \href{https://godotengine.org/asset-library/asset/2100}{\texttt{ https\+://godotengine.\+org/asset-\/library/asset/2100}}\hypertarget{index_autotoc_md1}{}\doxysection{\texorpdfstring{Features}{Features}}\label{index_autotoc_md1}
+\hypertarget{index_autotoc_md2}{}\doxysubsection{\texorpdfstring{Blazingly Fast 🚀}{Blazingly Fast 🚀}}\label{index_autotoc_md2}
+Optimized and multithreaded to allow you to run your tests at blazingly fast speeds! 🔥🚀\hypertarget{index_autotoc_md3}{}\doxysubsection{\texorpdfstring{Visual}{Visual}}\label{index_autotoc_md3}
+A minimal and simple user-\/interface that displays all the unit tests and results all in a single dock.
+
+\hypertarget{index_autotoc_md4}{}\doxysubsection{\texorpdfstring{Filtering}{Filtering}}\label{index_autotoc_md4}
+Sometimes you might just want to run a certain set of tests. That\textquotesingle{}s now possible with the filter option. Include a filter to match whatever tests you need to run.\hypertarget{index_autotoc_md5}{}\doxysubsection{\texorpdfstring{Simple To Use}{Simple To Use}}\label{index_autotoc_md5}
+Minimal overhead added to create unit tests. Declare a unit test function by adding a {\ttfamily \mbox{[}CSTest\+Function\mbox{]}} onto a static, parameterless function with a {\ttfamily Result} return type. After that, you can load and run your tests effortlessly.\hypertarget{index_autotoc_md6}{}\doxysection{\texorpdfstring{How to Use}{How to Use}}\label{index_autotoc_md6}
+
+\begin{DoxyEnumerate}
+\item Press the build button before enabling the plugin. This is to allow the plugin to build the necessary files to run.
+\item Ensure the plugin is enabled in the Godot editor.
+\item In a script, write a test function. Test functions must be static, parameterless, be prepended with the {\ttfamily \mbox{[}CSTest\+Function\mbox{]}} attribute, and return a {\ttfamily Result} type, indicating it\textquotesingle{}s success or failure.
+\begin{DoxyItemize}
+\item If an exception is thrown in your function, it will be counted as a fail.
+\end{DoxyItemize}
+\item Open the "{}\+C\# Testing"{} ui on the editor (it should be on the right by default).
+\item Click "{}\+Load Tests"{}. This should populate the dock with a list of all your test functions and the types that they reside in.
+\item Click on "{}\+Run Tests"{} to run each of the tests.
+\end{DoxyEnumerate}\hypertarget{index_autotoc_md7}{}\doxysection{\texorpdfstring{Example Test Functions}{Example Test Functions}}\label{index_autotoc_md7}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{preprocessor}{\ \#}}
+\DoxyCodeLine{\textcolor{keyword}{using\ }GdMUT;}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keyword}{public}\ \textcolor{keyword}{class\ }TestClass}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{\textcolor{preprocessor}{\ \ \ \ \#if\ TOOLS}}
+\DoxyCodeLine{\ \ \ \ [CSTestFunction]}
+\DoxyCodeLine{\ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{static}\ Result\ ExamplePass()}
+\DoxyCodeLine{\ \ \ \ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ x\ =\ 0;}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ x\ *=\ 100;}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (x\ ==\ 0)\ ?\ Result.Success\ :\ Result.Failure;}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ [CSTestFunction]}
+\DoxyCodeLine{\ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{static}\ Result\ ExampleFail()}
+\DoxyCodeLine{\ \ \ \ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ x\ =\ 0;}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ x\ *=\ 100;}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (x\ !=\ 0)\ ?\ Result.Success\ :\ Result.Failure;}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ [CSTestFunction]}
+\DoxyCodeLine{\ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{static}\ Result\ ExampleCustomFail()}
+\DoxyCodeLine{\ \ \ \ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ x\ =\ 0;}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ x\ *=\ 100;}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (x\ !=\ 0)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ ?\ Result.Success}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ :\ \textcolor{keyword}{new}\ Result(\textcolor{keyword}{false},\ \textcolor{stringliteral}{"{}You\ can't\ multiply\ 0\ and\ expect\ anything\ else\ than\ 0!"{}});}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ [CSTestFunction]}
+\DoxyCodeLine{\ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{static}\ Result\ ExampleCustomSuccess()}
+\DoxyCodeLine{\ \ \ \ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ x\ =\ 0;}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ x\ *=\ 100;}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (x\ ==\ 0)\ ?\ \textcolor{keyword}{new}\ Result(\textcolor{keyword}{true},\ \textcolor{stringliteral}{"{}Proved\ that\ 0\ *\ 100\ =\ 0"{}})\ :\ Result.Failure;}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{\textcolor{preprocessor}{\ \ \ \ \#endif}}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+ NOTE\+: The \textquotesingle{}{\ttfamily \#region}\textquotesingle{} and \textquotesingle{}{\ttfamily \#if TOOLS}\textquotesingle{} preprocessor directives are optional. Just good practice \+:)\hypertarget{index_autotoc_md8}{}\doxysection{\texorpdfstring{Planned Features}{Planned Features}}\label{index_autotoc_md8}
+
+\begin{DoxyItemize}
+\item \sout{Multithreaded tests}
+\item \sout{Test filtering (filter by name which tests to run)}
+\item Parameterized functions
+\item Async functions 
+\end{DoxyItemize}

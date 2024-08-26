@@ -1,138 +1,112 @@
 1. Introduction
 
- 1.1. Purpose of the system
+	1.1. Purpose of the system
   
-  The system is used for entertainment of the user. It is supposed to be a challenging experience which forces the player to evolve his skills and navigate            
-  carefully through the environment of the game.
+		The system is used for entertainment of the user. It is supposed to be a challenging 		experience which forces the player to evolve his skills and navigate carefully 			through the environment of the game.
 
- 1.2. Scope of the system
+	1.2. Scope of the system
 
-  The System is quite small as it is only used for educational purposes and to get used to the processes of developing a video game.
+		The System is quite small as it is only used for educational purposes and to get 			used to the processes of developing a video game.
 
- 1.3. Objectives and success criteria of the project
+	1.3. Objectives and success criteria of the project
 
-  The objective of the project is to create a small video game with at least a playable level and a completely planned out and structured development. 
+		The objective of the project is to create a small video game with at least a playable 		level and a completely planned out and structured development. 
 
- 1.4. Definitions, acronyms, and abbreviations
-  
-  The playable character is named "L41k4".
-  The research facility is named "Heidelberg Dynamics"
+	1.4. Definitions, acronyms, and abbreviations
 
- 1.5. References
-
- 1.6. Overview
+		The playable character is named "L41k4".
+		The research facility is named "Heidelberg Dynamics"
   
 2. Proposed system
- 2.1. Overview
 
- 2.2. Functional requirements
+	2.1. Functional requirements
 
-  The player is required to be able to move the playable character throughout the levels. WASD for up, down, left, right.
-  The player character should be able to aim using the mouse, e.g. the character aims in the cursor direction at all times.
-  The player character should move throughout a level, interacting with the environment. e.g. bump into a wall, walk down a corridor, etc. (Collision).
-  The playable character and the enemies have a certain number of hitpoints. 
-  Projectiles have a limited range.
-  Projectiles get destroyed when colliding with another object (i.e. walls, shelves, etc.).
-  When two projectiles collide they cancel each other out.
-  When the hitpoints of a entitiy run out, the character is eliminated.
-  The health and shield of the entities is limited between two values that are immutable.
-  The game is required to have a useable weapon which the player can use to reduce the hitpoints of enemies.
-  There also have to be different enemies.
-  The enemies can attack and damage the player.
-  The player must also be able to defeat these enemies with a certain amount of attacks.
-  There are keycards the player can collect in each level.
-  To complete a level the player must be able to collect the keycards first.
-  The game features a health system that manages all the damage and health variables of all entities in the game.
-  There are first aid kits that replenish the player's health and shield.
-  There is a enemy type "turret" that aims at the player and shoots projectiles at them.
-  There is a enemy type "bossturret" that aims at the player and shoots projectiles at them but at a significant faster pace as the normal "turret".
-  The player can win the game by defeating the two bossturret enemies in the last level.
-   
- 2.3. Nonfunctional requirements
+		The player is required to be able to move the playable character throughout the 			levels. WASD for up, down, left, right.
+		The player character should be able to aim using the mouse, e.g. the character 			aims in the cursor direction at all times.
+		The player character should move throughout a level, interacting with the 			environment. e.g. bump into a wall, walk down a corridor, etc. (Collision).
+		The playable character and the enemies have a certain number of hitpoints. 
+		Projectiles have a limited range.
+		Projectiles get destroyed when colliding with another object (i.e. walls, shelves, 			etc.).
+		When two projectiles collide they cancel each other out.
+		When the hitpoints of a entitiy run out, the character is eliminated.
+		The health and shield of the entities is limited between two values that are 			immutable.
+		The game is required to have a useable weapon which the player can use to reduce 		the hitpoints of enemies.
+		There also have to be different enemies.
+		The enemies can attack and damage the player.
+		The player must also be able to defeat these enemies with a certain amount of 			attacks.
+		There are keycards the player can collect in each level.
+		To complete a level the player must be able to collect the keycards first.
+		The game features a health system that manages all the damage and health 			variables of all entities in the game.
+		There are first aid kits that replenish the player's health and shield.
+		There is a enemy type "turret" that aims at the player and shoots projectiles at them.
+		There is a enemy type "bossturret" that aims at the player and shoots projectiles at 		them but at a significant faster pace as the normal "turret".
+		The player can win the game by defeating the two bossturret enemies in the last 		level.
+	   
+	2.2. Nonfunctional requirements
 
-  2.3.1. User interface and human factors
+	2.2.1. User interface and human factors
 
-   The game features a health and a shield bar that is visible through a HUD to the player at all times.
-   The game contains a indicator that shows the player if they already collected all keycards of the current level.
-   After defeat, the player can restart the game with a press of a button.
-   The program can be closed with the press of a button.
-   The controls of the game can be learned by the within 3 minutes.
+		The game features a health and a shield bar that is visible through a HUD to the 		player at all times.
+		The game contains a indicator that shows the player if they already collected all 			keycards of the current level.
+		After defeat, the player can restart the game with a press of a button.
+		The program can be closed with the press of a button.
+		The controls of the game can be learned by the within 3 minutes.
 
-  2.3.2. Documentation   
+	2.2.2. Documentation   
 
-   There should be a documentation of at least the most important diagrams that help to understand the concept of the game in detail and as a whole. (see 2.5)
-   There should be a short documentation of all SCRUM meetings.
-   There should be a documentation of changes made in the development process. 
+		There should be a documentation of at least the most important diagrams that help 		to understand the concept of the game in detail and as a whole. (see 2.5)
+		There should be a short documentation of all SCRUM meetings.
+		There should be a documentation of changes made in the development process. 
 
-  2.3.3. Hardware considerations
+	2.2.3. Hardware considerations
 
-    A PC with at least Windows 10 or a contemporary GNU/Linux variant,
-    At least 2 GB RAM
-    At least a GTX 750 or equivalent GPU
-    At least 2 GB of SSD Storage
-    At least a Ryzen 3 1200/Core i5-5200U or equivalent.
+		A PC with at least Windows 10 or a contemporary GNU/Linux variant,
+		At least 2 GB RAM
+		At least a GTX 750 or equivalent GPU
+		At least 2 GB of SSD Storage
+		At least a Ryzen 3 1200/Core i5-5200U or equivalent.
 
-  2.3.4. Performance characteristics
+	2.2.4. Performance characteristics
 
-   The game should run with at least 30 FPS.
-   A reaction to input should happen within 30 ms.
+		The game should run with at least 30 FPS.
+		A reaction to input should happen within 30 ms.
 
-  2.3.5. Error handling and extreme conditions
+	2.2.5. Error handling and extreme conditions
 
-   Errors and exceptions should be logged and reported to the developers.
+		Errors and exceptions should be logged and reported to the developers.
 
-  2.3.6. Quality issues
+	2.2.6. Quality issues
 
-   All the code is written in Chromium coding style.
-   We use line breaks after 80 characters.
-   We always use Test-Driven Development.
-   A class has a maximum of 200 LOC. 
+		All the code is written in Chromium coding style.
+		We use line breaks after 80 characters.
+		We always use Test-Driven Development.
+		A class has a maximum of 200 LOC. 
 
+	2.2.7. System modifications
 
-  2.3.7. System modifications
+		There is just a log used for error handling.
 
-   There is just a log used for error handling.
+	2.2.8. Physical environment
 
-  2.3.8. Physical environment
+		There is no internet connection required to play the game.
+		There is a mouse and keyboard needed to play the game.
+		There are no accessibility settings due to the games short development time.
 
-   There is no internet connection required to play the game.
-   There is a mouse and keyboard needed to play the game.
-   There are no accessibility settings due to the games short development time.
+	2.2.9. Security issues
 
-  2.3.9. Security issues
+		Due to the fact that the game uses no internet connection and no data from the 			player so there should be no security issues.
 
-   Due to the fact that the game uses no internet connection and no data from the player so there should be no security issues.
+	2.2.10. Audio
 
-  2.3.10. Resource issues
+		The game features its own soundtrack that is running in the background during the 		playthrough.
+		There is a sound effect when the player shoots a projectile.
+		There is a different sound effect when enemies shoot projectiles.
+		There are sounds when the player is hit.
+		There are sounds for hitting enemies.
 
-  2.3.11. Audio
+	2.3. Pseudo requirements
 
-   The game features its own soundtrack that is running in the background during the playthrough.
-   There is a sound effect when the player shoots a projectile.
-   There is a different sound effect when enemies shoot projectiles.
-   There are sounds when the player is hit.
-   There are sounds for hitting enemies.
+		The game should feel smooth and responsive at all times.
+		The game is designed in pixelart.
+		All levels and the overall design of the characters should match the setting of the 		research facility.
 
- 2.4. Pseudo requirements
-
-   The game should feel smooth and responsive at all times.
-   The game is designed in pixelart.
-   All levels and the overall design of the characters should match the setting of the research facility.
-   
- 2.5. System models
-
-  2.5.1. Scenarios
-
-  2.5.2. Use case model
-
-  2.5.3. Object model
-
-   2.5.3.1. Data dictionary
-
-   2.5.3.2. Class diagrams
-
-  2.5.4. Dynamic models
-
-  2.5.5. User-interface -- navigational paths and screen mock-ups
-
-3. Glossary
