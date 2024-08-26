@@ -2,7 +2,7 @@ using Godot;
 using System;
 
 /// <summary>
-/// Represents the health and other attributes of the player character.
+/// Represents the health of the player character.
 /// </summary>
 public partial class PlayerHealth : Node2D
 {

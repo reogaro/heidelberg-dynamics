@@ -19,7 +19,7 @@ public partial class Player : CharacterBody2D
 	private bool gotKeycard = false;
 
 	/// <summary>
-	/// Indicates if the player has collected the extra card.
+	/// Indicates if the player has collected the extra keycard.
 	/// </summary>
 	private bool gotExtraCard = true;
 
@@ -54,12 +54,12 @@ public partial class Player : CharacterBody2D
 	private double firerate = 0.5;
 
 	/// <summary>
-	/// PackedScene reference to the bullet prefab.
+	/// PackedScene reference to the projectile scene.
 	/// </summary>
 	private PackedScene bullet = GD.Load<PackedScene>("res://projectiles/projectile.tscn");
 
 	/// <summary>
-	/// Indicates if the player can fire again.
+	/// Indicates if the player can fire.
 	/// </summary>
 	private bool canFire = true;
 
@@ -78,7 +78,7 @@ public partial class Player : CharacterBody2D
 	}
 
 	/// <summary>
-	/// Handles the player's physics processing.
+	/// Handles the player's physics processing and reacts to player inputs.
 	/// </summary>
 	/// <param name="delta">The elapsed time since the last frame.</param>
 	public override void _PhysicsProcess(double delta)
@@ -155,7 +155,7 @@ public partial class Player : CharacterBody2D
 	}
 
 	/// <summary>
-	/// Executes the current interaction, if any.
+	/// Determines and executes the current interaction, if any.
 	/// </summary>
 	public void ExecuteInteract()
 	{
@@ -229,7 +229,7 @@ public partial class Player : CharacterBody2D
 	}
 
 	/// <summary>
-	/// Handles when the player enters an InteractionArea.
+	/// Handles when the player enters an InteractionArea and displays the interaction information.
 	/// </summary>
 	/// <param name="area">The InteractionArea the player entered.</param>
 	private void _on_interaction_area_area_entered(InteractionArea area)
@@ -252,7 +252,7 @@ public partial class Player : CharacterBody2D
 	}
 
 	/// <summary>
-	/// Handles when the player exits an InteractionArea.
+	/// Handles when the player exits an InteractionArea and resets the according values.
 	/// </summary>
 	/// <param name="area">The InteractionArea the player exited.</param>
 	private void _on_interaction_area_area_exited(InteractionArea area)
@@ -262,7 +262,7 @@ public partial class Player : CharacterBody2D
 	}
 
 	/// <summary>
-	/// Fires the player's weapon.
+	/// Fires the player's weapon by creating a new projectile instance.
 	/// </summary>
 	public async void Fire()
 	{
@@ -316,7 +316,7 @@ public partial class Player : CharacterBody2D
 	}
 
 	/// <summary>
-	/// Ends the game after a delay.
+	/// Ends the game after a 10 second delay.
 	/// </summary>
 	public async void EndGame()
 	{

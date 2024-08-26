@@ -2,7 +2,7 @@ using Godot;
 using System;
 
 /// <summary>
-/// Represents the health and other attributes of a boss character.
+/// Represents the health of a boss turret.
 /// </summary>
 public partial class BossHealth : Node2D
 {
