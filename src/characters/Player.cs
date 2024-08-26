@@ -1,183 +1,325 @@
 using Godot;
 using System;
 
+/// <summary>
+/// This class represents the player character in the game.
+/// </summary>
 public partial class Player : CharacterBody2D
 {
+	#region Fields
+
+	/// <summary>
+	/// The player's movement speed.
+	/// </summary>
 	private float moveSpeed = 175;
+
+	/// <summary>
+	/// Indicates if the player has collected the keycard.
+	/// </summary>
 	private bool gotKeycard = false;
+
+	/// <summary>
+	/// Indicates if the player has collected the extra card.
+	/// </summary>
 	private bool gotExtraCard = true;
+
+	/// <summary>
+	/// Determines if the player can move.
+	/// </summary>
 	private bool moveable = true;
+
+	/// <summary>
+	/// Keeps track of the number of bosses defeated.
+	/// </summary>
 	private int bossCount = 0;
+
+	/// <summary>
+	/// Reference to the currently interacted InteractionArea.
+	/// </summary>
 	private InteractionArea currentInteract;
+
+	/// <summary>
+	/// Reference to the player's AnimationTree.
+	/// </summary>
 	private AnimationTree animationTree;
+
+	/// <summary>
+	/// Reference to the AnimationNodeStateMachinePlayback node.
+	/// </summary>
 	private AnimationNodeStateMachinePlayback stateMachine;
+
+	/// <summary>
+	/// The fire rate of the player's weapon in seconds.
+	/// </summary>
 	private double firerate = 0.5;
+
+	/// <summary>
+	/// PackedScene reference to the bullet prefab.
+	/// </summary>
 	private PackedScene bullet = GD.Load<PackedScene>("res://projectiles/projectile.tscn");
+
+	/// <summary>
+	/// Indicates if the player can fire again.
+	/// </summary>
 	private bool canFire = true;
-	
-	public override void _Ready(){
+
+	#endregion
+
+	/// <summary>
+	/// Initializes the player character.
+	/// </summary>
+	public override void _Ready()
+	{
 		moveable = true;
 		this.gotKeycard = false;
 		animationTree = GetNode<AnimationTree>("AnimationTree");
-		stateMachine = (AnimationNodeStateMachinePlayback)animationTree.Get("parameters/playback");
+		stateMachine = (AnimationNodeStateMachinePlayback)animationTree.Get("parameters/playback");  
+
 	}
-	
-	public override void _PhysicsProcess(double delta){
+
+	/// <summary>
+	/// Handles the player's physics processing.
+	/// </summary>
+	/// <param name="delta">The elapsed time since the last frame.</param>
+	public override void _PhysicsProcess(double delta)
+	{
+		// Update health bars based on PlayerHealth node
 		GetParent().GetNode<CanvasLayer>("HUD").GetNode<ProgressBar>("Health").Value = GetNode<PlayerHealth>("Health").health._hp;
 		GetParent().GetNode<CanvasLayer>("HUD").GetNode<ProgressBar>("Shield").Value = GetNode<PlayerHealth>("Health").health._shield;
-		if(!GetNode<PlayerHealth>("Health").health._alive){
+
+		// Check if player is dead and update visuals accordingly
+		if (!GetNode<PlayerHealth>("Health").health._alive)
+		{
 			moveable = false;
 			GetParent().GetNode<CanvasLayer>("HUD").GetNode<NinePatchRect>("Defeat").Visible = true;
 		}
-		//get input directions
+
+		// Get input directions
 		Vector2 inputDirection = new Vector2(
 			Input.GetActionRawStrength("right") - Input.GetActionRawStrength("left"),
 			Input.GetActionRawStrength("down") - Input.GetActionRawStrength("up")
 		);
-		if(moveable){
+
+		if (moveable)
+		{
+			// Look at the mouse position
 			LookAt(GetGlobalMousePosition());
 
-			//fire bullet if pressed
-			if(Input.IsActionPressed("fire")&& canFire){
+			// Fire bullet if pressed and able to fire
+			if (Input.IsActionPressed("fire") && canFire)
+			{
 				Fire();
 			}
-			//update velocity and move character
-			this.Velocity = inputDirection * moveSpeed;	
+
+			// Update velocity and move character
+			this.Velocity = inputDirection * moveSpeed;
 			MoveAndSlide();
-	
+
 			UpdateAnimation();
 		}
-		//execute interaction if needed
-		if(Input.IsActionPressed("interact")){
-			if(GetNode<PlayerHealth>("Health").health._alive)
-			ExecuteInteract();
-			else{
+
+		// Execute interaction if needed
+		if (Input.IsActionPressed("interact"))
+		{
+			if (GetNode<PlayerHealth>("Health").health._alive)
+			{
+				ExecuteInteract();
+			}
+			else
+			{
 				GetTree().ChangeSceneToFile("res://levels/level_1.tscn");
 			}
 		}
-		
-		if(Input.IsActionPressed("exit")){
+
+		// Handle other input actions
+		if (Input.IsActionPressed("exit"))
+		{
 			GetTree().Quit();
 		}
-		
-		if(Input.IsActionPressed("cheat")){
+
+		if (Input.IsActionPressed("cheat"))
+		{
 			GetTree().ChangeSceneToFile("res://levels/level_6.tscn");
 		}
-		if(Input.IsActionPressed("speed")){
+
+		if (Input.IsActionPressed("speed"))
+		{
 			moveSpeed = 500;
 		}
-		
-		if(bossCount == 2){
+
+		// Check for endgame condition
+		if (bossCount == 2)
+		{
 			EndGame();
 		}
 	}
-	
-	public void ExecuteInteract(){
-		if(currentInteract!=null){
-			//check which type of interaction is executed
-		 switch(currentInteract.GetInteractType()){
-			case "collect":
-				//check if a keycard or a weapon is picked up
-				if(currentInteract.GetValue()=="keycard"){
+
+	/// <summary>
+	/// Executes the current interaction, if any.
+	/// </summary>
+	public void ExecuteInteract()
+	{
+		if (currentInteract != null)
+		{
+			// Check which type of interaction is executed
+			switch (currentInteract.GetInteractType())
+			{
+				case "collect":
+					// Check if a keycard or a weapon is picked up
+					if (currentInteract.GetValue() == "keycard")
+					{
 						this.gotKeycard = true;
 						GetParent().GetNode<CanvasLayer>("HUD").GetNode<Sprite2D>("Sprite2D").Visible = true;
-						
-						//update interaction labels and visability of keycard
+
+						// Update interaction labels and visability of keycard
 						GetParent().GetNode<StaticBody2D>("keycard").Visible = false;
 						GetParent().GetNode<StaticBody2D>("keycard").GetNode<InteractionArea>("InteractionArea").SetInteractType("collected");
 						GetParent().GetNode<StaticBody2D>("keycard").GetNode<InteractionArea>("InteractionArea").SetLabel("");
-						//change label of door
-						if(gotExtraCard){
-							GetParent().GetNode<InteractionArea>("NextLevel").SetLabel("[E] to enter next level"); 
+
+						// Change label of door
+						if (gotExtraCard)
+						{
+							GetParent().GetNode<InteractionArea>("NextLevel").SetLabel("[E] to enter next level");
 						}
-				}
-				else if(currentInteract.GetValue()=="keycard2"){
+					}
+					else if (currentInteract.GetValue() == "keycard2")
+					{
 						this.gotExtraCard = true;
 						GetParent().GetNode<CanvasLayer>("HUD").GetNode<Sprite2D>("Sprite2D2").Visible = true;
-						//update interaction labels and visability of keycard
+
+						// Update interaction labels and visability of keycard
 						GetParent().GetNode<StaticBody2D>("keycard2").Visible = false;
 						GetParent().GetNode<StaticBody2D>("keycard2").GetNode<InteractionArea>("InteractionArea").SetInteractType("collected");
 						GetParent().GetNode<StaticBody2D>("keycard2").GetNode<InteractionArea>("InteractionArea").SetLabel("");
-						//change label of door
-						if(gotKeycard){
+
+						// Change label of door
+						if (gotKeycard)
+						{
 							GetParent().GetNode<InteractionArea>("NextLevel").SetLabel("[E] to enter next level");
-						} 
-				}
-				break;
-			case "next_level":
-				if(gotKeycard && gotExtraCard){
-					GetTree().ChangeSceneToFile("res://levels/" + GetParent().GetNode<InteractionArea>("NextLevel").GetValue());
-				}
-				break;
-			case "dialogue":
-				moveable = true;
-				currentInteract.EndDialogue();
-				break;
+						}
+					}
+					break;
+				case "next_level":
+					if (gotKeycard && gotExtraCard)
+					{
+						GetTree().ChangeSceneToFile("res://levels/" + GetParent().GetNode<InteractionArea>("NextLevel").GetValue());
+					}
+					break;
+				case "dialogue":
+					moveable = true;
+					currentInteract.EndDialogue();
+					break;
 			}
 		}
 	}
 
-
-	public void UpdateAnimation(){
-		if(this.Velocity!=Vector2.Zero){
+	/// <summary>
+	/// Updates the player's animation based on their velocity.
+	/// </summary>
+	public void UpdateAnimation()
+	{
+		if (this.Velocity != Vector2.Zero)
+		{
 			stateMachine.Travel("walk");
 		}
-		else{
+		else
+		{
 			stateMachine.Travel("idle");
 		}
 	}
 
+	/// <summary>
+	/// Handles when the player enters an InteractionArea.
+	/// </summary>
+	/// <param name="area">The InteractionArea the player entered.</param>
 	private void _on_interaction_area_area_entered(InteractionArea area)
 	{
-		if(area.GetInteractType()!="heal"){
+		if (area.GetInteractType() != "heal")
+		{
 			this.currentInteract = area;
 			this.currentInteract.GetNode<Label>("Label").Text = currentInteract.GetLabel();
-			if(area.GetInteractType()=="dialogue"){
+			if (area.GetInteractType() == "dialogue")
+			{
 				area.StartDialogue(area.GetValue());
 				moveable = false;
 			}
 		}
-		else{
+		else
+		{
 			GetNode<PlayerHealth>("Health").health.HealBoth(500);
 			area.GetParent().QueueFree();
 		}
 	}
 
+	/// <summary>
+	/// Handles when the player exits an InteractionArea.
+	/// </summary>
+	/// <param name="area">The InteractionArea the player exited.</param>
 	private void _on_interaction_area_area_exited(InteractionArea area)
 	{
 		area.GetNode<Label>("Label").Text = "";
 		this.currentInteract = null;
 	}
-	
-	public async void Fire(){
+
+	/// <summary>
+	/// Fires the player's weapon.
+	/// </summary>
+	public async void Fire()
+	{
 		GetNode<AudioStreamPlayer>("BulletSound").Play();
+
 		RigidBody2D bulletInstance = bullet.Instantiate<RigidBody2D>();
 		GetParent().AddChild(bulletInstance);
+
 		bulletInstance.Position = GetNode<Node2D>("BulletPoint").GlobalPosition;
 		bulletInstance.RotationDegrees = RotationDegrees;
-		bulletInstance.ApplyImpulse(new Vector2(750, 0).Rotated(Rotation),new Vector2());
+		bulletInstance.ApplyImpulse(new Vector2(750, 0).Rotated(Rotation), new Vector2());
+
 		canFire = false;
 		await ToSignal(GetTree().CreateTimer(firerate), "timeout");
 		canFire = true;
 	}
-	
-	public Vector2 GetPosition(){
+
+	/// <summary>
+	/// Gets the player's current position.
+	/// </summary>
+	/// <returns>The player's position.</returns>
+	public Vector2 GetPosition()
+	{
 		return Position;
 	}
-	
-	public void SetMoveable(bool val){
+
+	/// <summary>
+	/// Sets the player's moveability.
+	/// </summary>
+	/// <param name="val">The new moveability state.</param>
+	public void SetMoveable(bool val)
+	{
 		moveable = val;
 	}
-	
-	public void SetExtraCard(bool val){
+
+	/// <summary>
+	/// Sets the player's extra card state.
+	/// </summary>
+	/// <param name="val">The new extra card state.</param>
+	public void SetExtraCard(bool val)
+	{
 		gotExtraCard = val;
 	}
-	
-	public void IncreaseBossCount(){
+
+	/// <summary>
+	/// Increases the boss count.
+	/// </summary>
+	public void IncreaseBossCount()
+	{
 		bossCount++;
 	}
-	
-	public async void EndGame(){
+
+	/// <summary>
+	/// Ends the game after a delay.
+	/// </summary>
+	public async void EndGame()
+	{
 		await ToSignal(GetTree().CreateTimer(10), "timeout");
 		GetTree().ChangeSceneToFile("res://levels/level_7.tscn");
 	}
