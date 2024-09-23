@@ -4,6 +4,7 @@ using System;
 public partial class Player : CharacterBody2D
 {
 	private float moveSpeed = 175;
+	private bool god = false;
 	private bool gotKeycard = false;
 	private bool gotExtraCard = true;
 	private bool moveable = true;
@@ -66,7 +67,13 @@ public partial class Player : CharacterBody2D
 		if(Input.IsActionPressed("speed")){
 			moveSpeed = 500;
 		}
-		
+		if(Input.IsActionPressed("god")){
+			god = true;
+		}
+		if(god){
+			GetNode<PlayerHealth>("Health").health.RestoreHealth();
+			GetNode<PlayerHealth>("Health").health.RestoreShield();
+		}
 		if(bossCount == 2){
 			EndGame();
 		}
